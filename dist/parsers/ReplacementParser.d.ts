@@ -1,0 +1,31 @@
+import { RecipeSchema } from "./RecipeSchema.js";
+export declare function normalizeNodeList(list: Element[]): string[];
+export declare function normalizeElement(ele: Element | null, attr?: string | false): string;
+export declare function normalizeString(str: any): string;
+export declare class ReplacementParser {
+    private data;
+    private window?;
+    private host;
+    constructor(host: string);
+    parse(window: Window, orig: RecipeSchema): void;
+    before_parse(): void;
+    get(): RecipeSchema;
+    getWindow(): Window | undefined;
+    querySelector(query: string, text?: string): Element | null;
+    querySelectorAll(query: string, text?: string): Element[];
+    hasHost(host: string): boolean;
+    author(): string;
+    title(): string;
+    category(): string;
+    prep_time(): string;
+    cook_time(): string;
+    calc_total_time(): string;
+    total_time(): string;
+    yields(): string;
+    image(): string;
+    ingredients(): string | string[];
+    instructions(): string | string[];
+    ratings(): string;
+    cuisine(): string;
+    description(): string;
+}

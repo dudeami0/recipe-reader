@@ -1,0 +1,1 @@
+{"version":3,"file":"CopyKat.js","sourceRoot":"","sources":["../../../ts/parsers/sites/CopyKat.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,iBAAiB,EAAE,MAAM,yBAAyB,CAAC;AAE9E,MAAM,OAAO,OAAQ,SAAQ,iBAAiB;IAC1C,WAAW;QACP,MAAM,GAAG,GAAG,IAAI,CAAC,aAAa,CAAC,+BAA+B,CAAC,CAAC;QAChE,OAAO,gBAAgB,CAAC,GAAG,CAAC,CAAC;IACjC,CAAC;CACJ"}
