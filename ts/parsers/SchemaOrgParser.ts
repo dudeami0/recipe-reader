@@ -30,12 +30,23 @@ export abstract class SchemaOrgParser extends Parser {
             title: this.normalizeString(data.name),
             category: this.normalizeString(data.recipeCategory),
             total_time: this.normalizeString(data.totalTime),
-            yields: this.normalizeString(data.recipeYield),
+            yields: this.normalizeString([
+                ...(data.recipeYield || []),
+                ...(data.yield || [])
+            ]),
             image: this.normalizeImage(data.image),
-            ingredients: this.normalizeArray(data.recipeIngredient).map(
-                this.normalizeString
-            ),
-            instructions: this.normalizeArray(data.recipeInstructions),
+            ingredients: this.normalizeArray([
+                ...(data.recipeIngredient || []),
+                ...(data.recipeIngredients || []),
+                ...(data.ingredients || []),
+                ...(data.ingredient || [])
+            ]).map(this.normalizeString),
+            instructions: this.normalizeArray([
+                ...(data.recipeInstructions || []),
+                ...(data.recipeInstruction || []),
+                ...(data.instructions || []),
+                ...(data.instruction || [])
+            ]),
             rating: this.normalizeString(data.ratingValue)
         };
     }

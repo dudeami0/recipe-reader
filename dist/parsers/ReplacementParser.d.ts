@@ -8,6 +8,7 @@ export declare class ReplacementParser {
     private host;
     constructor(host: string);
     parse(window: Window, orig: RecipeSchema): void;
+    getOrig(): any;
     before_parse(): void;
     get(): RecipeSchema;
     getWindow(): Window | undefined;

@@ -21,6 +21,9 @@ export class ReplacementParser {
         this.window = window;
         this.data = Object.assign({}, orig);
     }
+    getOrig() {
+        return this.data;
+    }
     before_parse() { }
     get() {
         this.before_parse();
@@ -81,10 +84,10 @@ export class ReplacementParser {
         return this.data.category;
     }
     prep_time() {
-        return "0m";
+        return this.data.prepTime;
     }
     cook_time() {
-        return "0m";
+        return this.data.cookTime;
     }
     calc_total_time() {
         // TODO Parse time from string and reconstruct properly, lib for this?

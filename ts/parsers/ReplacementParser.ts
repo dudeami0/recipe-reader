@@ -35,6 +35,10 @@ export class ReplacementParser {
         this.data = Object.assign({}, orig);
     }
 
+    getOrig() {
+        return this.data;
+    }
+
     before_parse() {}
 
     get() {
@@ -112,11 +116,11 @@ export class ReplacementParser {
     }
 
     prep_time(): string {
-        return "0m";
+        return this.data.prepTime;
     }
 
     cook_time(): string {
-        return "0m";
+        return this.data.cookTime;
     }
 
     calc_total_time(): string {

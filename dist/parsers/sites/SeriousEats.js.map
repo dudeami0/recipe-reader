@@ -1,0 +1,1 @@
+{"version":3,"file":"SeriousEats.js","sourceRoot":"","sources":["../../../ts/parsers/sites/SeriousEats.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,iBAAiB,EAAE,MAAM,yBAAyB,CAAC;AAE9E,MAAM,OAAO,WAAY,SAAQ,iBAAiB;IAC9C,MAAM;QACF,MAAM,GAAG,GAAG,IAAI,CAAC,aAAa,CAAC,gCAAgC,CAAC,CAAC;QACjE,OAAO,gBAAgB,CAAC,GAAG,CAAC,CAAC;IACjC,CAAC;CACJ"}
