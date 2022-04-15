@@ -27,10 +27,7 @@ export class SchemaOrgRDFaParser extends SchemaOrgParser {
             if (element.hasAttribute("property")) {
                 let text = element.hasAttribute("content")
                     ? element.getAttribute("content")
-                    : element.innerHTML
-                          .split("\n")
-                          .map((str) => str.trim())
-                          .join("\n");
+                    : element.textContent;
                 let name = <string>element.getAttribute("property");
                 if (results[name]) {
                     if (!(results[name] instanceof Array)) {

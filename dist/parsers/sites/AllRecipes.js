@@ -1,7 +1,7 @@
 import { ReplacementParser } from "../ReplacementParser.js";
 export class AllRecipes extends ReplacementParser {
     author() {
-        const author = super.author();
+        const author = super.raw().author;
         if (author instanceof Array) {
             return author[0].name;
         }

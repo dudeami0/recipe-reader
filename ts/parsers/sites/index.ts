@@ -24,8 +24,6 @@ import { Food52 } from "./Food52.js";
 import { FoodRepublic } from "./FoodRepublic.js";
 import { ForksOverKnives } from "./ForksOverKnives.js";
 import { FranzoesischKochen } from "./FranzoesischKochen.js";
-import { FredriksFikaAllas } from "./FredriksFikaAllas.js";
-import { GeniusKitchen } from "./GeniusKitchen.js";
 import { GreatBritishChefs } from "./GreatBritishChefs.js";
 import { HEB } from "./HEB.js";
 import { HomeChef } from "./HomeChef.js";
@@ -94,7 +92,7 @@ interface Constructor {
     (host: string): ReplacementParser;
 }
 
-const parsers: { [key: string]: Constructor } = {
+export const parsers: { [key: string]: Constructor | undefined } = {
     "afghankitchenrecipes.com": (h) => new AfghanKitchenRecipes(h),
     "akispetretzikis.com": (h) => new AkisPetretzikis(h),
     "allrecipes.com": (h) => new AllRecipes(h),
@@ -121,8 +119,8 @@ const parsers: { [key: string]: Constructor } = {
     "foodrepublic.com": (h) => new FoodRepublic(h),
     "forksoverknives.com": (h) => new ForksOverKnives(h),
     "franzoesischkochen.de": (h) => new FranzoesischKochen(h),
-    "fredriksfika.allas.se": (h) => new FredriksFikaAllas(h),
-    "geniuskitchen.com": (h) => new GeniusKitchen(h),
+    // (broken) "fredriksfika.allas.se": (h) => new FredriksFikaAllas(h),
+    // (deprecated) "geniuskitchen.com": (h) => new GeniusKitchen(h),
     // TODO (broken) "gonnawantseconds.com": (h) => new GonnaWantSeconds(h)
     "greatbritishchefs.com": (h) => new GreatBritishChefs(h),
     // TODO (async) "gousto.co.uk": (h) => new GoustoJson(h),
@@ -198,9 +196,12 @@ export default function replace(window: Window, orig: RecipeSchema) {
     const host = window.location.host.toLowerCase();
     for (let domain in parsers) {
         if (host === domain) {
-            const parser = parsers[domain](host);
-            parser.parse(window, orig);
-            orig = parser.get();
+            const factory = parsers[domain];
+            if (factory) {
+                const parser = factory(host);
+                parser.parse(window, orig);
+                orig = parser.get();
+            }
             break;
         }
     }

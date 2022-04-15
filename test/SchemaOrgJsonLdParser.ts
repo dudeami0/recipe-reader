@@ -1,8 +1,8 @@
 import assert from "assert";
 import jsdom from "jsdom";
 import { describe, it } from "mocha";
-import { isRecipeSchema } from "../../ts/parsers/RecipeSchema.js";
-import { SchemaOrgJsonLdParser } from "../../ts/parsers/SchemaOrgJsonLdParser.js";
+import { isRecipeSchema } from "../ts/parsers/RecipeSchema.js";
+import { SchemaOrgJsonLdParser } from "../ts/parsers/SchemaOrgJsonLdParser.js";
 
 const { JSDOM } = jsdom;
 

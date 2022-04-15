@@ -1,4 +1,5 @@
 export interface RecipeSchema {
+    _raw?: any;
     host: string;
     author?: string;
     title?: string;

@@ -18,7 +18,7 @@ export function normalizeElement(
 }
 
 export function normalizeString(str: any) {
-    return (String(str) || "").trim();
+    return (String(str) || "").trim().replace(new RegExp("\\s+", "ig"), " ");
 }
 
 export class ReplacementParser {
@@ -101,6 +101,10 @@ export class ReplacementParser {
 
     hasHost(host: string) {
         return host.toLowerCase().indexOf(this.host) !== -1;
+    }
+
+    raw(): any {
+        return this.data._raw;
     }
 
     author(): string {

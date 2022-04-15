@@ -15,6 +15,7 @@ export declare class ReplacementParser {
     querySelector(query: string, text?: string): Element | null;
     querySelectorAll(query: string, text?: string): Element[];
     hasHost(host: string): boolean;
+    raw(): any;
     author(): string;
     title(): string;
     category(): string;

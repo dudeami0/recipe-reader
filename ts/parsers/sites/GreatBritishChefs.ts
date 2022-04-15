@@ -5,6 +5,11 @@ import {
 } from "../ReplacementParser.js";
 
 export class GreatBritishChefs extends ReplacementParser {
+    author() {
+        const ele = this.querySelector(".Author__Name");
+        return normalizeElement(ele);
+    }
+
     title() {
         const ele = this.querySelector("h1");
         return normalizeElement(ele);

@@ -5,6 +5,10 @@ import {
 } from "../ReplacementParser.js";
 
 export class FoodRepublic extends ReplacementParser {
+    author() {
+        const ele = this.querySelector(".byline");
+        return normalizeElement(ele);
+    }
     title() {
         const ele = this.querySelector("h3.recipe-title");
         return normalizeElement(ele);

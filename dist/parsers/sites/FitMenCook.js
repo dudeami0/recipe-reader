@@ -12,7 +12,7 @@ export class FitMenCook extends ReplacementParser {
         const ele = this.querySelector("h4 strong");
         const childNodes = ele ? Array.from(ele.childNodes) : [];
         for (const child of childNodes) {
-            if (child.nodeType == Node.TEXT_NODE) {
+            if (child.nodeType === 3) {
                 const text = child.textContent || "";
                 return (text.split(" ").filter((a) => parseInt(a) > 0)[0] +
                     "servings");

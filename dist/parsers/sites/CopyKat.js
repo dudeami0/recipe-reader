@@ -1,8 +1,4 @@
-import { normalizeElement, ReplacementParser } from "../ReplacementParser.js";
-export class CopyKat extends ReplacementParser {
-    description() {
-        const ele = this.querySelector(`span[style="display: block;"]`);
-        return normalizeElement(ele);
-    }
+import { WordpressRecipe } from "./WordpressRecipe.js";
+export class CopyKat extends WordpressRecipe {
 }
 //# sourceMappingURL=CopyKat.js.map

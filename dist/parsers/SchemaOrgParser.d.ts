@@ -5,6 +5,7 @@ import { RecipeSchema } from "./RecipeSchema.js";
  * a RecipeSchema if one is found.
  */
 export declare abstract class SchemaOrgParser extends Parser {
+    private rawData?;
     constructor(window: Window, host: string);
     /**
      * Calls on the extending class to extract the data.
@@ -15,6 +16,9 @@ export declare abstract class SchemaOrgParser extends Parser {
      * @returns
      */
     parse(): any[];
+    private mappings;
+    private normalizeKeyNames;
+    private normalizeSingleKey;
     normalize(data: any): RecipeSchema;
     private normalizeArray;
     private normalizeString;
