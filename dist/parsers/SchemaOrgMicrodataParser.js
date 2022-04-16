@@ -4,11 +4,9 @@ export class SchemaOrgMicrodataParser extends SchemaOrgParser {
         super(window, host);
     }
     extract() {
-        const elements = Array.from(this.getWindow().document.querySelectorAll(`[itemtype$="//schema.org/Recipe"]`));
-        const results = elements.map((ele) => {
+        return Array.from(this.getWindow().document.querySelectorAll(`[itemtype$="//schema.org/Recipe"]`)).map((ele) => {
             return this.getProperties(ele.children);
         });
-        return results;
     }
     getProperties(elements) {
         let results = {};
@@ -29,7 +27,25 @@ export class SchemaOrgMicrodataParser extends SchemaOrgParser {
                 }
             }
             if (!element.hasAttribute("itemtype")) {
-                results = Object.assign(results, this.getProperties(element.children));
+                const inject = this.getProperties(element.children);
+                for (const key in inject) {
+                    const r = results[key] || [];
+                    const l = inject[key];
+                    let a = [];
+                    if (r instanceof Array) {
+                        a = [...a, ...r];
+                    }
+                    else {
+                        a.push(r);
+                    }
+                    if (l instanceof Array) {
+                        a = [...a, ...l];
+                    }
+                    else {
+                        a.push(l);
+                    }
+                    results[key] = a;
+                }
             }
         });
         return results;

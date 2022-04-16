@@ -1,3 +1,5 @@
+import { decode } from "html-entities";
+import striptags from "striptags";
 export function normalizeNodeList(list) {
     return list.map((ele) => normalizeElement(ele));
 }
@@ -11,7 +13,7 @@ export function normalizeElement(ele, attr = false) {
     return "";
 }
 export function normalizeString(str) {
-    return (String(str) || "").trim().replace(new RegExp("\\s+", "ig"), " ");
+    return decode(striptags((String(str) || "").trim().replace(new RegExp("\\s+", "ig"), " ")));
 }
 export class ReplacementParser {
     constructor(host) {

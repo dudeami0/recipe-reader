@@ -1,6 +1,4 @@
-import { ReplacementParser } from "../ReplacementParser.js";
-export declare class Inspiralized extends ReplacementParser {
-    title(): string;
-    ingredients(): string[];
-    instructions(): string[];
+import { WordpressRecipe } from "./WordpressRecipe.js";
+export declare class Inspiralized extends WordpressRecipe {
+    author(): string;
 }

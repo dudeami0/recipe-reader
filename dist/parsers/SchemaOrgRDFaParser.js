@@ -4,13 +4,9 @@ export class SchemaOrgRDFaParser extends SchemaOrgParser {
         super(window, host);
     }
     extract() {
-        const elements = Array.from(this.getWindow().document.querySelectorAll(`[vocab$="//schema.org/"][typeof="Recipe"]`
-        //`[itemtype$="//schema.org/Recipe"]`
-        ));
-        const results = elements.map((ele) => {
+        return Array.from(this.getWindow().document.querySelectorAll(`[vocab$="//schema.org/"][typeof="Recipe"]`)).map((ele) => {
             return this.getProperties(ele.children);
         });
-        return results;
     }
     getProperties(elements) {
         let results = {};

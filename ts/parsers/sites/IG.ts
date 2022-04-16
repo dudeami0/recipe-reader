@@ -5,8 +5,13 @@ import {
 } from "../ReplacementParser.js";
 
 export class IG extends ReplacementParser {
+    author() {
+        const ele = this.querySelector(".complemento-credito");
+        return normalizeElement(ele);
+    }
+
     title() {
-        const ele = this.querySelector(`h2[itemprob="name"]`);
+        const ele = this.querySelector(`h2[itemprop="name"]`);
         return normalizeElement(ele);
     }
 

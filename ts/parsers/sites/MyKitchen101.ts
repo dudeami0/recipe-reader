@@ -5,6 +5,26 @@ import {
 } from "../ReplacementParser.js";
 
 export class MyKitchen101 extends ReplacementParser {
+    private _instructions: string[] = [];
+
+    before_parse() {
+        const ele = this.querySelector(".entry-content");
+        if (ele && ele.children) {
+            const children = Array.from(ele.children) || [];
+            let stage = 0;
+            for (const child of children) {
+                if (!child.textContent) {
+                    continue;
+                }
+                if (stage > 0 && child.matches("p")) {
+                    this._instructions.push(child.textContent || "");
+                }
+                if (child.textContent.indexOf("做法：") !== -1) {
+                    stage++;
+                }
+            }
+        }
+    }
     author() {
         const ele = this.querySelector(`a[rel="author"]`);
         return normalizeElement(ele);
@@ -22,19 +42,16 @@ export class MyKitchen101 extends ReplacementParser {
 
     ingredients() {
         const ele = this.querySelector("p", "材料：");
-        if (ele) {
-            const eles = Array.from(ele.querySelectorAll("ul:nth-child(1) li"));
+        if (ele && ele.nextElementSibling) {
+            const eles = Array.from(
+                ele.nextElementSibling.querySelectorAll("li")
+            );
             return normalizeNodeList(eles);
         }
         return super.ingredients();
     }
 
     instructions() {
-        const ele = this.querySelector("p", "做法：");
-        if (ele) {
-            const eles = Array.from(ele.querySelectorAll("p"));
-            return normalizeNodeList(eles);
-        }
-        return super.instructions();
+        return this._instructions;
     }
 }

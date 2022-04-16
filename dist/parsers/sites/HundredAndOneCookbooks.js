@@ -1,23 +1,12 @@
-import { normalizeElement, normalizeNodeList, ReplacementParser } from "../ReplacementParser.js";
-export class HundredAndOneCookbooks extends ReplacementParser {
+import { normalizeElement, normalizeNodeList } from "../ReplacementParser.js";
+import { WordpressRecipe } from "./WordpressRecipe.js";
+export class HundredAndOneCookbooks extends WordpressRecipe {
     title() {
-        const ele = this.querySelector("h1");
-        return normalizeElement(ele);
-    }
-    total_time() {
-        const eles = this.querySelectorAll("div.wprm-recipe-time");
-        return normalizeElement(eles ? eles[eles.length - 1] : null);
-    }
-    yields() {
-        const ele = this.querySelector("div.wprm-recipe-time");
+        const ele = this.querySelector(".wprm-recipe-container h2");
         return normalizeElement(ele);
     }
     ingredients() {
-        const eles = this.querySelectorAll("li.wprm-recipe-ingredient");
-        return normalizeNodeList(eles);
-    }
-    instructions() {
-        const eles = this.querySelectorAll("li.wprm-recipe-instruction");
+        const eles = this.querySelectorAll(".cb101-recipe-ingredient");
         return normalizeNodeList(eles);
     }
 }

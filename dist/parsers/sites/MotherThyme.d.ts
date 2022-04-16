@@ -1,3 +1,5 @@
-import { WordpressRecipe } from "./WordpressRecipe.js";
-export declare class MotherThyme extends WordpressRecipe {
+import { ReplacementParser } from "../ReplacementParser.js";
+export declare class MotherThyme extends ReplacementParser {
+    ingredients(): string[];
+    instructions(): any;
 }

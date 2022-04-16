@@ -5,6 +5,10 @@ import {
 } from "../ReplacementParser.js";
 
 export class StreetKitchen extends ReplacementParser {
+    author() {
+        const ele = this.querySelector(`a[rel="author"]:nth-child(2)`);
+        return normalizeElement(ele);
+    }
     title() {
         const ele = this.querySelector("h1.entry-title");
         return normalizeElement(ele);

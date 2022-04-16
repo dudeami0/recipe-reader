@@ -5,6 +5,34 @@ import {
 } from "../ReplacementParser.js";
 
 export class WikiCookbook extends ReplacementParser {
+    private _ingredients: string[] = [];
+    private _instructions: string[] = [];
+
+    before_parse() {
+        const ele = this.querySelector(".mw-parser-output");
+        if (ele) {
+            const children = Array.from(ele.children || []);
+            let isIngredients = false;
+            let isProcedure = false;
+            for (const child of children) {
+                if (child.matches("h2")) {
+                    isIngredients =
+                        child.children[0].getAttribute("id") === "Ingredients";
+                    isProcedure =
+                        child.children[0].getAttribute("id") === "Procedure";
+                } else if (isIngredients && child.matches("ul")) {
+                    normalizeNodeList(
+                        Array.from(child.querySelectorAll("li"))
+                    ).forEach((o) => this._ingredients.push(o));
+                } else if (isProcedure && child.matches("ol")) {
+                    normalizeNodeList(
+                        Array.from(child.querySelectorAll("li"))
+                    ).forEach((o) => this._instructions.push(o));
+                }
+            }
+        }
+    }
+
     title() {
         const ele = this.querySelector("h1");
         return normalizeElement(ele);
@@ -32,20 +60,10 @@ export class WikiCookbook extends ReplacementParser {
     }
 
     ingredients() {
-        const ele = this.querySelector("#Ingredients");
-        if (ele) {
-            const eles = Array.from(ele.nextElementSibling?.children || []);
-            return normalizeNodeList(eles);
-        }
-        return super.ingredients();
+        return this._ingredients;
     }
 
     instructions() {
-        const ele = this.querySelector("#Procedure");
-        if (ele) {
-            const eles = Array.from(ele.nextElementSibling?.children || []);
-            return normalizeNodeList(eles);
-        }
-        return super.instructions();
+        return this._instructions;
     }
 }

@@ -1,8 +1,4 @@
-import {
-    normalizeElement,
-    normalizeNodeList,
-    ReplacementParser
-} from "../ReplacementParser.js";
+import { normalizeElement, ReplacementParser } from "../ReplacementParser.js";
 
 export class SunBasket extends ReplacementParser {
     title() {
@@ -21,8 +17,18 @@ export class SunBasket extends ReplacementParser {
     }
 
     ingredients() {
-        const eles = this.querySelectorAll(".ingredients-list li");
-        return normalizeNodeList(eles);
+        const ele = this.querySelector("strong", "Shopping List");
+        if (ele) {
+            const results: string[] = [];
+            const children = Array.from(ele.parentNode?.childNodes || []);
+            for (const child of children) {
+                if (child.nodeType === 3) {
+                    results.push(child.textContent || "");
+                }
+            }
+            return results;
+        }
+        return super.ingredients();
     }
 
     instructions() {

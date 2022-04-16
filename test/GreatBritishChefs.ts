@@ -29,6 +29,7 @@ describe("GreatBritishChefs", function () {
                 "12 chicory leaves, red",
                 "12 baby gem lettuce leaves",
                 "8 anchovy fillets",
+
                 "10ml of mosto cotto",
                 "sea salt",
                 "freshly ground black pepper",

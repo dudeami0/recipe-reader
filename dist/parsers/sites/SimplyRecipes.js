@@ -1,5 +1,9 @@
 import { normalizeElement, normalizeNodeList, ReplacementParser } from "../ReplacementParser.js";
 export class SimplyRecipes extends ReplacementParser {
+    author() {
+        const ele = this.querySelector(".lifestyle-food-bylines a");
+        return normalizeElement(ele);
+    }
     title() {
         const ele = this.querySelector("h1");
         return normalizeElement(ele);
@@ -13,12 +17,12 @@ export class SimplyRecipes extends ReplacementParser {
         return normalizeElement(ele);
     }
     ingredients() {
-        const ele = this.querySelectorAll("ul.ingredient-list li");
-        return normalizeNodeList(ele);
+        const eles = this.querySelectorAll(".section--ingredients ul li");
+        return normalizeNodeList(eles);
     }
     instructions() {
-        const ele = this.querySelectorAll("div.structured-project__steps>ol li");
-        return normalizeNodeList(ele);
+        const eles = this.querySelectorAll(".section--instructions ol li");
+        return normalizeNodeList(eles);
     }
 }
 //# sourceMappingURL=SimplyRecipes.js.map

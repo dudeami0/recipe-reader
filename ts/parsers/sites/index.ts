@@ -28,7 +28,6 @@ import { GreatBritishChefs } from "./GreatBritishChefs.js";
 import { HEB } from "./HEB.js";
 import { HomeChef } from "./HomeChef.js";
 import { HundredAndOneCookbooks } from "./HundredAndOneCookbooks.js";
-import { IG } from "./IG.js";
 import { Inspiralized } from "./Inspiralized.js";
 import { JamieOliver } from "./JamieOliver.js";
 import { Joyfoodsunshine } from "./Joyfoodsunshine.js";
@@ -121,21 +120,21 @@ export const parsers: { [key: string]: Constructor | undefined } = {
     "franzoesischkochen.de": (h) => new FranzoesischKochen(h),
     // (broken) "fredriksfika.allas.se": (h) => new FredriksFikaAllas(h),
     // (deprecated) "geniuskitchen.com": (h) => new GeniusKitchen(h),
-    // TODO (broken) "gonnawantseconds.com": (h) => new GonnaWantSeconds(h)
+    // (broken) "gonnawantseconds.com": (h) => new GonnaWantSeconds(h)
     "greatbritishchefs.com": (h) => new GreatBritishChefs(h),
-    // TODO (async) "gousto.co.uk": (h) => new GoustoJson(h),
+    // (async) "gousto.co.uk": (h) => new GoustoJson(h),
     "heb.com": (h) => new HEB(h),
-    // TODO (broken) "heinzbrasil.com.br": (h) => new HeinzBrasil(h),
+    // (broken) "heinzbrasil.com.br": (h) => new HeinzBrasil(h),
     "homechef.com": (h) => new HomeChef(h),
     "101cookbooks.com": (h) => new HundredAndOneCookbooks(h),
-    "receitas.ig.com.br": (h) => new IG(h),
+    // (broken) "receitas.ig.com.br": (h) => new IG(h),
     "inspiralized.com": (h) => new Inspiralized(h),
     "jamieoliver.com": (h) => new JamieOliver(h),
     "joyfoodsunshine.com": (h) => new Joyfoodsunshine(h),
     "justbento.com": (h) => new JustBento(h),
     "kennymcgovern.com": (h) => new KennyMcGovern(h),
     "kingarthurbaking.com": (h) => new KingArthur(h),
-    // TODO (async) "mobile.kptncook.com": (h) => new KptnCook(h),
+    // (async) "mobile.kptncook.com": (h) => new KptnCook(h),
     "kuchnia-domowa.pl": (h) => new KuchniaDomowa(h),
     "kwestiasmaku.com": (h) => new KwestiaSmaku(h),
     "latelierderoxane.com": (h) => new LAtelierDeRoxane(h),
@@ -150,7 +149,7 @@ export const parsers: { [key: string]: Constructor | undefined } = {
     "mykitchen101.com": (h) => new MyKitchen101(h),
     "mykitchen101en.com": (h) => new MyKitchen101en(h),
     "healthyeating.nhlbi.nih.gov": (h) => new NIHHealthyEating(h),
-    // TODO (broken) "nutritionbynathalie.com": (h) => new NutritionByNathalie(h)
+    // (broken) "nutritionbynathalie.com": (h) => new NutritionByNathalie(h)
     "panelinha.com.br": (h) => new Panelinha(h),
     "paninihappy.com": (h) => new PaniniHappy(h),
     "popsugar.com": (h) => new PopSugar(h),
@@ -186,7 +185,7 @@ export const parsers: { [key: string]: Constructor | undefined } = {
     "vegolosi.it": (h) => new Vegolosi(h),
     "whatsgabycooking.com": (h) => new WhatsGabyCooking(h),
     "en.wikibooks.org": (h) => new WikiCookbook(h),
-    // TODO (async) "woolworths.com.au": (h) => new Woolworths(h),
+    // (async) "woolworths.com.au": (h) => new Woolworths(h),
     "woop.co.nz": (h) => new Woop(h),
     "yummly.com": (h) => new Yummly(h),
     "zeit.de": (h) => new ZeitWochenmarkt(h)

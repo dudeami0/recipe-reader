@@ -27,6 +27,20 @@ describe("FoodRepublic", function () {
 
         it(`should have the correct ingredients`, function () {
             assert.deepEqual(recipe.ingredients, [
+                "1 10-ounce firm block tofu, water drained and excess water removed",
+                "3 spring onions, very finely sliced",
+                "3 garlic cloves, crushed",
+                "1 small red chili, finely chopped",
+                "Handful cilantro, chopped",
+                "1 tablespoon Egg Replacement",
+                "4 tablespoons buckwheat flour",
+                "2 tablespoons sesame oil",
+                "1 tablespoon Sriracha sauce",
+                "1 tablespoon coconut oil, for sauteeing",
+                "5 tablespoons Sriracha",
+                "5 tablespoons ketchup",
+                "3 tablespoons maple syrup",
+                "5 tablespoons water",
                 "10 1/2 ounces rice noodles",
                 "Vegetables (such as asparagus, bak choi, tenderstem broccoli, radishes, carrots, surgarsnap peas)",
                 "Cucumber ribbons",

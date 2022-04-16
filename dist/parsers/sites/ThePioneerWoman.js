@@ -1,7 +1,11 @@
 import { normalizeElement, normalizeNodeList, ReplacementParser } from "../ReplacementParser.js";
 export class ThePioneerWoman extends ReplacementParser {
+    author() {
+        const ele = this.querySelector(".byline-name");
+        return normalizeElement(ele);
+    }
     title() {
-        const ele = this.querySelector("h3.recipe-title");
+        const ele = this.querySelector("h1");
         return normalizeElement(ele);
     }
     total_time() {
@@ -9,12 +13,12 @@ export class ThePioneerWoman extends ReplacementParser {
         return eles.map((ele) => normalizeElement(ele)).join(" ");
     }
     ingredients() {
-        const eles = this.querySelectorAll("ul.list-ingredients li");
+        const eles = this.querySelectorAll(".ingredient-item");
         return normalizeNodeList(eles);
     }
     instructions() {
-        const ele = this.querySelector("div.panel-body:last-child");
-        return normalizeElement(ele);
+        const eles = this.querySelectorAll(".direction-lists li");
+        return normalizeNodeList(eles);
     }
 }
 //# sourceMappingURL=ThePioneerWoman.js.map

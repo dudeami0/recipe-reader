@@ -5,6 +5,11 @@ import {
 } from "../ReplacementParser.js";
 
 export class TheSpruceEats extends ReplacementParser {
+    author() {
+        const ele = this.querySelector(".lifestyle-food-bylines a");
+        return normalizeElement(ele);
+    }
+
     title() {
         const ele = this.querySelector("h1.heading__title");
         return normalizeElement(ele);

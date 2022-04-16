@@ -5,6 +5,11 @@ import {
 } from "../ReplacementParser.js";
 
 export class Delish extends ReplacementParser {
+    author() {
+        const ele = this.querySelector(".byline-name");
+        return normalizeElement(ele);
+    }
+
     title() {
         const ele = this.querySelector("h1");
         return normalizeElement(ele);

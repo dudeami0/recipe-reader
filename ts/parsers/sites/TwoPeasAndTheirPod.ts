@@ -1,3 +1,3 @@
-import { WordpressRecipe } from "./WordpressRecipe.js";
+import { ReplacementParser } from "../ReplacementParser.js";
 
-export class TwoPeasAndTheirPod extends WordpressRecipe {}
+export class TwoPeasAndTheirPod extends ReplacementParser {}

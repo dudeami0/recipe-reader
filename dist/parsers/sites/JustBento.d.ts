@@ -1,5 +1,6 @@
 import { ReplacementParser } from "../ReplacementParser.js";
 export declare class JustBento extends ReplacementParser {
+    private _title;
     private _ingredients;
     private _instructions;
     before_parse(): void;

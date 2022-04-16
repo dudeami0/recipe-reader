@@ -1,7 +1,7 @@
 import { normalizeElement, ReplacementParser } from "../ReplacementParser.js";
 export class Rezeptwelt extends ReplacementParser {
     author() {
-        const ele = this.querySelector("span.viewRecipeAuthor");
+        const ele = this.querySelector("span.recipe-author");
         return normalizeElement(ele);
     }
     title() {

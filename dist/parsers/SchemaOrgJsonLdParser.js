@@ -19,8 +19,17 @@ export class SchemaOrgJsonLdParser extends SchemaOrgParser {
                 if (!(schemas instanceof Array)) {
                     schemas = [schemas];
                 }
-                return schemas.filter((schema) => schema["@context"].indexOf("//schema.org") !== -1 &&
-                    schema["@type"] === "Recipe");
+                schemas = schemas.filter((schema) => schema["@context"].indexOf("//schema.org") !== -1);
+                let flattened = [];
+                for (const schema of schemas) {
+                    if (schema["@graph"] instanceof Array) {
+                        schema["@graph"].forEach((o) => flattened.push(o));
+                    }
+                    else {
+                        flattened.push(schema);
+                    }
+                }
+                return flattened.filter((schema) => schema["@type"] === "Recipe");
             }
             catch (e) {
                 // Malformed JSON

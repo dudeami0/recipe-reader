@@ -6,13 +6,13 @@ import {
 
 export class Woop extends ReplacementParser {
     title() {
-        const ele = this.querySelector(`meta[property="og:title"]`);
+        const ele = this.querySelector(`h1`);
         return normalizeElement(ele);
     }
 
     ingredients() {
-        const eles = this.querySelectorAll("div.ingredients:nth-child(1)>li");
-        return normalizeNodeList(eles);
+        const eles = this.querySelectorAll(".ingredients li");
+        return normalizeNodeList(eles).filter((str) => str.length > 0);
     }
 
     yields() {

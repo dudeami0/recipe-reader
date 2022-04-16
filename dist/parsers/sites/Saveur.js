@@ -1,5 +1,9 @@
 import { normalizeElement, ReplacementParser } from "../ReplacementParser.js";
 export class Saveur extends ReplacementParser {
+    author() {
+        const ele = this.querySelector(".Article-author a");
+        return normalizeElement(ele);
+    }
     title() {
         const ele = this.querySelector("h1");
         return normalizeElement(ele);

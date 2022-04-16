@@ -12,6 +12,9 @@ export async function get(href: string) {
     }
     const req = await fetch(href);
     const body = await req.text();
+    if (body.indexOf("Incapsula incident ID") !== -1) {
+        throw new Error("Incapsula protected site, cannot test.");
+    }
     if (req.status !== 200) {
         throw new Error("Failed to resolve (" + req.statusText + "): " + href);
     }

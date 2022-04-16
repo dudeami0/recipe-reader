@@ -1,3 +1,3 @@
-import { MotherThyme } from "./MotherThyme.js";
-export declare class SimplyQuinoa extends MotherThyme {
+import { ReplacementParser } from "../ReplacementParser.js";
+export declare class SimplyQuinoa extends ReplacementParser {
 }

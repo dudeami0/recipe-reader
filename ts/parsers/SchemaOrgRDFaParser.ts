@@ -6,16 +6,13 @@ export class SchemaOrgRDFaParser extends SchemaOrgParser {
     }
 
     extract() {
-        const elements = Array.from(
+        return Array.from(
             this.getWindow().document.querySelectorAll(
                 `[vocab$="//schema.org/"][typeof="Recipe"]`
-                //`[itemtype$="//schema.org/Recipe"]`
             )
-        );
-        const results = elements.map((ele) => {
+        ).map((ele) => {
             return this.getProperties(ele.children);
         });
-        return results;
     }
 
     private getProperties(elements: HTMLCollection) {

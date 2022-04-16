@@ -3,7 +3,7 @@ export declare class SunBasket extends ReplacementParser {
     title(): string;
     total_time(): string;
     yields(): string;
-    ingredients(): string[];
+    ingredients(): string | string[];
     instructions(): string[];
     image(): string;
 }

@@ -1,3 +1,5 @@
+import { decode } from "html-entities";
+import striptags from "striptags";
 import { RecipeSchema } from "./RecipeSchema.js";
 
 export function normalizeNodeList(list: Element[]) {
@@ -18,7 +20,11 @@ export function normalizeElement(
 }
 
 export function normalizeString(str: any) {
-    return (String(str) || "").trim().replace(new RegExp("\\s+", "ig"), " ");
+    return decode(
+        striptags(
+            (String(str) || "").trim().replace(new RegExp("\\s+", "ig"), " ")
+        )
+    );
 }
 
 export class ReplacementParser {

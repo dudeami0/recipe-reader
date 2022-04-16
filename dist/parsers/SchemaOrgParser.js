@@ -62,7 +62,9 @@ export class SchemaOrgParser extends Parser {
         return this.normalizeKeyNames({
             _raw: data,
             host: this.getHost(),
-            author: this.normalizeString(data.author),
+            author: this.normalizeArray(data.author)
+                .map(this.normalizeString.bind(this))
+                .join(", "),
             title: this.normalizeString(data.name),
             category: this.normalizeString(data.recipeCategory),
             total_time: this.normalizeString(data.totalTime),

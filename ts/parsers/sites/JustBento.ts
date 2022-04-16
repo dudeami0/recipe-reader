@@ -5,6 +5,7 @@ import {
 } from "../ReplacementParser.js";
 
 export class JustBento extends ReplacementParser {
+    private _title: string = "";
     private _ingredients: string[] = [];
     private _instructions: string[] = [];
 
@@ -16,8 +17,12 @@ export class JustBento extends ReplacementParser {
             for (const child of children) {
                 const tagName = child.tagName.toLowerCase();
                 if (step == 0 && tagName === "h3") {
+                    this._title = normalizeElement(child).replace(
+                        "Recipe: ",
+                        ""
+                    );
                     step++;
-                } else if (step == 1 && tagName === "ul") {
+                } else if (step > 0 && tagName === "ul") {
                     const tmp = Array.from(child.querySelectorAll("li"));
                     this._ingredients = normalizeNodeList(tmp);
                     step++;
@@ -29,8 +34,7 @@ export class JustBento extends ReplacementParser {
     }
 
     title() {
-        const ele = this.querySelector(`meta[property="og:title"]`);
-        return normalizeElement(ele).replace("Recipe: ", "");
+        return this._title;
     }
 
     total_time() {
