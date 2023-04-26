@@ -1,15 +1,16 @@
-import jsdom from "jsdom";
-import { normalizeNodeList, ReplacementParser } from "../ReplacementParser.js";
-const { JSDOM } = jsdom;
+import { ReplacementParser } from "../ReplacementParser.js";
 export class KingArthur extends ReplacementParser {
     instructions() {
         let instructions = super.instructions();
-        if (instructions instanceof String) {
-            const eles = new JSDOM(instructions).window.document.querySelectorAll("p");
-            if (eles) {
-                instructions = normalizeNodeList(Array.from(eles));
-            }
-        }
+        // TODO Resolve this without adding jsdom
+        // if (instructions instanceof String) {
+        //     const eles = new JSDOM(
+        //         <string>instructions
+        //     ).window.document.querySelectorAll("p");
+        //     if (eles) {
+        //         instructions = normalizeNodeList(Array.from(eles));
+        //     }
+        // }
         return instructions;
     }
 }
