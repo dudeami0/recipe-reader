@@ -1,1 +1,0 @@
-{"version":3,"file":"TheHappyFoodie.js","sourceRoot":"","sources":["../../../ts/parsers/sites/TheHappyFoodie.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,iBAAiB,EAAE,iBAAiB,EAAE,MAAM,yBAAyB,CAAC;AAE/E,MAAM,OAAO,cAAe,SAAQ,iBAAiB;IACjD,WAAW;QACP,MAAM,IAAI,GAAG,IAAI,CAAC,gBAAgB,CAAC,kCAAkC,CAAC,CAAC;QACvE,OAAO,iBAAiB,CAAC,IAAI,CAAC,CAAC;IACnC,CAAC;CACJ"}

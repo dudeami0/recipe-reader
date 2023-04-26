@@ -1,1 +1,0 @@
-{"version":3,"file":"SundPaaBudget.js","sourceRoot":"","sources":["../../../ts/parsers/sites/SundPaaBudget.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,iBAAiB,EAAE,MAAM,yBAAyB,CAAC;AAE9E,MAAM,OAAO,aAAc,SAAQ,iBAAiB;IAChD,WAAW;QACP,MAAM,GAAG,GAAG,IAAI,CAAC,aAAa,CAAC,iCAAiC,CAAC,CAAC;QAClE,OAAO,gBAAgB,CAAC,GAAG,EAAE,SAAS,CAAC,CAAC;IAC5C,CAAC;CACJ"}
