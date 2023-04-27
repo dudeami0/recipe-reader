@@ -7,9 +7,6 @@ const { JSDOM } = jsdom;
 export async function get(href: string) {
     let hostname = href.toLowerCase().substring(href.indexOf("//") + 2);
     hostname = hostname.substring(0, hostname.indexOf("/"));
-    if (hostname.indexOf("www.") === 0) {
-        hostname = hostname.substring(4);
-    }
     const req = await fetch(href);
     const body = await req.text();
     if (body.indexOf("Incapsula incident ID") !== -1) {

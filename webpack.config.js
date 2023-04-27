@@ -1,21 +1,15 @@
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
-    entry: "./src/index.ts",
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                use: "ts-loader",
-                exclude: /node_modules/
-            }
-        ]
+    context: path.resolve(__dirname, "dist"),
+    entry: "./index.js",
+    mode: "production",
+    output: {
+        filename: "bundle.min.js",
+        path: path.resolve(__dirname, "static"),
     },
     resolve: {
-        extensions: [".tsx", ".ts", ".js"]
+        extensions: [".js"],
     },
-    output: {
-        filename: "bundle.js",
-        path: path.resolve(__dirname, "dist")
-    }
 };
