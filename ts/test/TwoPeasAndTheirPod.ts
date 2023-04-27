@@ -2,16 +2,17 @@ import assert from "assert";
 import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
-
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get("https://www.twopeasandtheirpod.com/curry-lentil-soup/");
-});
-
 describe("TwoPeasAndTheirPod", function () {
     describe("https://www.twopeasandtheirpod.com/curry-lentil-soup/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.twopeasandtheirpod.com/curry-lentil-soup/"
+            );
+        });
+
         it(`should be authored by "Maria Lichty"`, function () {
             assert.equal(recipe.author, "Maria Lichty");
         });
@@ -36,7 +37,7 @@ describe("TwoPeasAndTheirPod", function () {
                 "1 13.5- ounce can coconut milk, (shaken well)",
                 "1/2 cup chopped cilantro",
                 "Kosher salt and pepper, (to taste)",
-                "Garnish: extra cilantro, (drizzle of coconut milk, lime wedges)"
+                "Garnish: extra cilantro, (drizzle of coconut milk, lime wedges)",
             ]);
         });
     });

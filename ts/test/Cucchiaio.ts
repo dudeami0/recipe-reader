@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.cucchiaio.it/ricetta/danubio-salato-allo-yogurt/"
-    );
-});
-
 describe("Cucchiaio", function () {
     describe("https://www.cucchiaio.it/ricetta/danubio-salato-allo-yogurt/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.cucchiaio.it/ricetta/danubio-salato-allo-yogurt/"
+            );
+        });
+
         it(`should be authored by "Il Cucchiaio d'Argento"`, function () {
             assert.equal(recipe.author, "Il Cucchiaio d'Argento");
         });
@@ -36,7 +36,7 @@ describe("Cucchiaio", function () {
                 "200 g di provola a dadini",
                 "1 tuorlo",
                 "1 cucchiaio di latte",
-                "semi di chia"
+                "semi di chia",
             ]);
         });
     });

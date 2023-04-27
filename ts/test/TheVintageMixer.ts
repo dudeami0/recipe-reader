@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.thevintagemixer.com/martha-stewarts-christmas-cut-out-cookies/"
-    );
-});
-
 describe("TheVintageMixer", function () {
     describe("https://www.thevintagemixer.com/martha-stewarts-christmas-cut-out-cookies/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.thevintagemixer.com/martha-stewarts-christmas-cut-out-cookies/"
+            );
+        });
+
         it(`should be authored by "Becky"`, function () {
             assert.equal(recipe.author, "Becky");
         });
@@ -35,7 +35,7 @@ describe("TheVintageMixer", function () {
                 "3 cups confectioners' sugar*",
                 "2 egg whites",
                 "5-6 drops of freshly squeezed lemon juice",
-                "Food Coloring"
+                "Food Coloring",
             ]);
         });
     });

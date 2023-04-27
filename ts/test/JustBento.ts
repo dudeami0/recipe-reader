@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://justbento.com/handbook/johbisai/char-siu-yakibuta-chinese-style-roast-pork"
-    );
-});
-
 describe("JustBento", function () {
     describe("https://justbento.com/handbook/johbisai/char-siu-yakibuta-chinese-style-roast-pork", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://justbento.com/handbook/johbisai/char-siu-yakibuta-chinese-style-roast-pork"
+            );
+        });
+
         it(`should be titled "Char siu or yakibuta - Chinese style roast pork"`, function () {
             assert.equal(
                 recipe.title,
@@ -32,7 +32,7 @@ describe("JustBento", function () {
                 "2 garlic cloves, peeled and crushed with a knife",
                 "1 cinnamon stick",
                 "1 small piece of star anise",
-                "1 clove"
+                "1 clove",
             ]);
         });
     });

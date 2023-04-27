@@ -1,10 +1,11 @@
-import {
-    normalizeElement,
-    normalizeNodeList,
-    ReplacementParser
-} from "../ReplacementParser.js";
+import { ReplacementParser } from "../ReplacementParser.js";
+import { normalizeElement, normalizeNodeList } from "../utils.js";
 
 export class TastyKitchen extends ReplacementParser {
+    title() {
+        return this.getOrig()._raw.name[0];
+    }
+
     total_time() {
         return this.calc_total_time();
     }

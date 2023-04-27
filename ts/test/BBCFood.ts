@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.bbc.co.uk/food/recipes/easter_brownies_39845"
-    );
-});
-
 describe("BBCFood", function () {
     describe("https://www.bbc.co.uk/food/recipes/easter_brownies_39845", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.bbc.co.uk/food/recipes/easter_brownies_39845"
+            );
+        });
+
         it(`should be authored by "By Benjamina Ebuehi"`, function () {
             assert.equal(recipe.author, "By Benjamina Ebuehi");
         });
@@ -34,7 +34,7 @@ describe("BBCFood", function () {
                 "1 tsp vanilla bean paste",
                 "115g/4oz plain flour",
                 "½ tsp fine sea salt",
-                "150g/5½oz shortbread biscuits, roughly chopped (optional)"
+                "150g/5½oz shortbread biscuits, roughly chopped (optional)",
             ]);
         });
     });

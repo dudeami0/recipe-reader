@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.kuchnia-domowa.pl/przepisy/dania-glowne/595-krokiety-z-pieczarkami-jajkiem-zoltym-serem"
-    );
-});
-
 describe("KuchniaDomowa", function () {
     describe("https://www.kuchnia-domowa.pl/przepisy/dania-glowne/595-krokiety-z-pieczarkami-jajkiem-zoltym-serem", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.kuchnia-domowa.pl/przepisy/dania-glowne/595-krokiety-z-pieczarkami-jajkiem-zoltym-serem"
+            );
+        });
+
         it(`should be titled "Krokiety z pieczarkami, jajkiem i żółtym serem"`, function () {
             assert.equal(
                 recipe.title,
@@ -37,7 +37,7 @@ describe("KuchniaDomowa", function () {
                 "sól, pieprz",
                 "2 jajka",
                 "bułka tarta",
-                "olej do smażenia"
+                "olej do smażenia",
             ]);
         });
     });

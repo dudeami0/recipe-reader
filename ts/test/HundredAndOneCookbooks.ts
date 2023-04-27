@@ -3,15 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get("https://www.101cookbooks.com/shredded-egg-salad/");
-});
-
 describe("HundredAndOneCookbooks", function () {
     describe("https://www.101cookbooks.com/shredded-egg-salad/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.101cookbooks.com/shredded-egg-salad/"
+            );
+        });
+
         it(`should be titled "Shredded Egg Salad"`, function () {
             assert.equal(recipe.title, "Shredded Egg Salad");
         });
@@ -25,7 +27,7 @@ describe("HundredAndOneCookbooks", function () {
                 "1/4 cup chopped fresh dill",
                 "1 medium shallot, chopped",
                 "3 baby radishes, shaved thin",
-                "to serve: little dollop of salted creme fraiche and/or a drizzle of olive oil."
+                "to serve: little dollop of salted creme fraiche and/or a drizzle of olive oil.",
             ]);
         });
     });

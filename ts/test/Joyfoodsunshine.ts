@@ -3,15 +3,15 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get("https://joyfoodsunshine.com/lemon-orzo-salad/");
-});
-
 describe("Joyfoodsunshine", function () {
     describe("https://joyfoodsunshine.com/lemon-orzo-salad/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get("https://joyfoodsunshine.com/lemon-orzo-salad/");
+        });
+
         it(`should be authored by "Laura"`, function () {
             assert.equal(recipe.author, "Laura");
         });
@@ -39,7 +39,7 @@ describe("Joyfoodsunshine", function () {
                 "▢ Salt",
                 "▢ Pepper or lemon pepper",
                 "▢ ½ cup pine nuts toasted",
-                "▢ Extra parmesan cheese"
+                "▢ Extra parmesan cheese",
             ]);
         });
     });

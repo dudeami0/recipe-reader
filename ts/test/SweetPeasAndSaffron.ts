@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://sweetpeasandsaffron.com/slow-cooker-cilantro-lime-chicken-tacos-freezer-slow-cooker/"
-    );
-});
-
 describe("SweetPeasAndSaffron", function () {
     describe("https://sweetpeasandsaffron.com/slow-cooker-cilantro-lime-chicken-tacos-freezer-slow-cooker/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://sweetpeasandsaffron.com/slow-cooker-cilantro-lime-chicken-tacos-freezer-slow-cooker/"
+            );
+        });
+
         it(`should be authored by "Denise Bustard"`, function () {
             assert.equal(recipe.author, "Denise Bustard");
         });
@@ -39,7 +39,7 @@ describe("SweetPeasAndSaffron", function () {
                 "▢ Tortillas 2 small tortillas per person",
                 "▢ shredded cabbage",
                 "▢ radish slices",
-                "▢ greek yogurt"
+                "▢ greek yogurt",
             ]);
         });
     });

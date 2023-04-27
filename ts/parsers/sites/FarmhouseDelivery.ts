@@ -1,4 +1,5 @@
-import { normalizeElement, ReplacementParser } from "../ReplacementParser.js";
+import { ReplacementParser } from "../ReplacementParser.js";
+import { normalizeElement } from "../utils.js";
 
 // This website seems to have changed, or uses different templates
 // than the python version. Currently a TODO.

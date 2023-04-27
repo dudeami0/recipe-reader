@@ -1,12 +1,9 @@
-import {
-    normalizeElement,
-    normalizeNodeList,
-    ReplacementParser
-} from "../ReplacementParser.js";
+import { ReplacementParser } from "../ReplacementParser.js";
+import { normalizeElement, normalizeNodeList } from "../utils.js";
 
 export class ThePioneerWoman extends ReplacementParser {
     author() {
-        const ele = this.querySelector(".byline-name");
+        const ele = this.querySelector("address span");
         return normalizeElement(ele);
     }
 
@@ -21,12 +18,20 @@ export class ThePioneerWoman extends ReplacementParser {
     }
 
     ingredients() {
-        const eles = this.querySelectorAll(".ingredient-item");
+        const eles = this.querySelectorAll(".ingredient-lists li");
         return normalizeNodeList(eles);
     }
 
     instructions() {
-        const eles = this.querySelectorAll(".direction-lists li");
-        return normalizeNodeList(eles);
+        return this.querySelectorAll(".directions li li").map((ele) => {
+            let text = "";
+            ele.childNodes.forEach((node) => {
+                if (node.nodeType === node.TEXT_NODE && node.textContent) {
+                    text = node.textContent;
+                }
+            });
+
+            return text.trim().replace(/[\n\r]/g, "");
+        });
     }
 }

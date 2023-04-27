@@ -3,15 +3,15 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get("https://www.dr.dk/mad/opskrift/juleskum");
-});
-
 describe("Dr", function () {
     describe("https://www.dr.dk/mad/opskrift/juleskum", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get("https://www.dr.dk/mad/opskrift/juleskum");
+        });
+
         it(`should be authored by "Martin Wiese"`, function () {
             assert.equal(recipe.author, "Martin Wiese");
         });
@@ -31,7 +31,7 @@ describe("Dr", function () {
                 "2 spsk. frysetørrede jordbær",
                 "1 tsk. lyserød farve",
                 "1 tsk. vaniljepasta",
-                "Flormelis efter behov"
+                "Flormelis efter behov",
             ]);
         });
     });

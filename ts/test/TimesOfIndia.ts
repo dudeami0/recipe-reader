@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://recipes.timesofindia.com/us/recipes/karela-seekh-kebab/rs90791520.cms"
-    );
-});
-
 describe("TimesOfIndia", function () {
     describe("https://recipes.timesofindia.com/us/recipes/karela-seekh-kebab/rs90791520.cms", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://recipes.timesofindia.com/us/recipes/karela-seekh-kebab/rs90791520.cms"
+            );
+        });
+
         it(`should be authored by "by TNN"`, function () {
             assert.equal(recipe.author, "by TNN");
         });
@@ -37,7 +37,7 @@ describe("TimesOfIndia", function () {
                 "200 grated potato",
                 "5 almonds",
                 "50 gm corn",
-                "salt as required"
+                "salt as required",
             ]);
         });
     });

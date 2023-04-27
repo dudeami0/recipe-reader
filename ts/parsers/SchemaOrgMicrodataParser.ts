@@ -1,4 +1,5 @@
 import { SchemaOrgParser } from "./SchemaOrgParser.js";
+import { normalizeElement } from "./utils.js";
 
 export class SchemaOrgMicrodataParser extends SchemaOrgParser {
     constructor(window: Window, host: string = "undefined") {
@@ -21,7 +22,7 @@ export class SchemaOrgMicrodataParser extends SchemaOrgParser {
             if (element.hasAttribute("itemprop")) {
                 let text = element.hasAttribute("content")
                     ? element.getAttribute("content")
-                    : element.textContent;
+                    : normalizeElement(element);
                 let name = <string>element.getAttribute("itemprop");
                 if (results[name]) {
                     if (!(results[name] instanceof Array)) {

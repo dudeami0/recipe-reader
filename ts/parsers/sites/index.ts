@@ -12,14 +12,11 @@ import { CookieAndKate } from "./CookieAndKate.js";
 import { CookingLight } from "./CookingLight.js";
 import { Cookstr } from "./Cookstr.js";
 import { CopyKat } from "./CopyKat.js";
-import { CountryLiving } from "./CountryLiving.js";
 import { Cucchiaio } from "./Cucchiaio.js";
-import { Delish } from "./Delish.js";
 import { Dr } from "./Dr.js";
 import { EatingWell } from "./EatingWell.js";
 import { FineDiningLovers } from "./FineDiningLovers.js";
 import { FitMenCook } from "./FitMenCook.js";
-import { Food } from "./Food.js";
 import { Food52 } from "./Food52.js";
 import { FoodRepublic } from "./FoodRepublic.js";
 import { ForksOverKnives } from "./ForksOverKnives.js";
@@ -58,7 +55,6 @@ import { Rezeptwelt } from "./Rezeptwelt.js";
 import { SallysBlog } from "./SallysBlog.js";
 import { Saveur } from "./Saveur.js";
 import { SeriousEats } from "./SeriousEats.js";
-import { SimplyQuinoa } from "./SimplyQuinoa.js";
 import { SimplyRecipes } from "./SimplyRecipes.js";
 import { SouthernLiving } from "./SouthernLiving.js";
 import { SteamyKitchen } from "./SteamyKitchen.js";
@@ -77,11 +73,9 @@ import { TheVintageMixer } from "./TheVintageMixer.js";
 import { TimesOfIndia } from "./TimesOfIndia.js";
 import { TineNo } from "./TineNo.js";
 import { TudoGostoso } from "./TudoGostoso.js";
-import { TwoPeasAndTheirPod } from "./TwoPeasAndTheirPod.js";
 import { USDAMyPlate } from "./USDAMyPlate.js";
 import { Valdemarsro } from "./Valdemarsro.js";
 import { Vegolosi } from "./Vegolosi.js";
-import { WhatsGabyCooking } from "./WhatsGabyCooking.js";
 import { WikiCookbook } from "./WikiCookbook.js";
 import { Woop } from "./Woop.js";
 import { Yummly } from "./Yummly.js";
@@ -105,15 +99,12 @@ export const parsers: { [key: string]: Constructor | undefined } = {
     "cookinglight.com": (h) => new CookingLight(h),
     "cookstr.com": (h) => new Cookstr(h),
     "copykat.com": (h) => new CopyKat(h),
-    "countryliving.com": (h) => new CountryLiving(h),
     "cucchiaio.it": (h) => new Cucchiaio(h),
-    "delish.com": (h) => new Delish(h),
     "dr.dk": (h) => new Dr(h),
     "eatingwell.com": (h) => new EatingWell(h),
     // TODO (broken) "recipes.farmhousedeliver.com": (h) => new FarmhouseDelivery(h),
     "finedininglovers.com": (h) => new FineDiningLovers(h),
     "fitmencook.com": (h) => new FitMenCook(h),
-    "food.com": (h) => new Food(h),
     "food52.com": (h) => new Food52(h),
     "foodrepublic.com": (h) => new FoodRepublic(h),
     "forksoverknives.com": (h) => new ForksOverKnives(h),
@@ -160,7 +151,6 @@ export const parsers: { [key: string]: Constructor | undefined } = {
     "sallys-blog.de": (h) => new SallysBlog(h),
     "saveur.com": (h) => new Saveur(h),
     "seriouseats.com": (h) => new SeriousEats(h),
-    "simplyquinoa.com": (h) => new SimplyQuinoa(h),
     "simplyrecipes.com": (h) => new SimplyRecipes(h),
     "southernliving.com": (h) => new SouthernLiving(h),
     "steamykitchen.com": (h) => new SteamyKitchen(h),
@@ -179,16 +169,14 @@ export const parsers: { [key: string]: Constructor | undefined } = {
     "recipes.timesofindia.com": (h) => new TimesOfIndia(h),
     "tine.no": (h) => new TineNo(h),
     "tudogostoso.com.br": (h) => new TudoGostoso(h),
-    "twopeasandtheirpod.com": (h) => new TwoPeasAndTheirPod(h),
     "myplate.gov": (h) => new USDAMyPlate(h),
     "valdemarsro.dk": (h) => new Valdemarsro(h),
     "vegolosi.it": (h) => new Vegolosi(h),
-    "whatsgabycooking.com": (h) => new WhatsGabyCooking(h),
     "en.wikibooks.org": (h) => new WikiCookbook(h),
     // (async) "woolworths.com.au": (h) => new Woolworths(h),
     "woop.co.nz": (h) => new Woop(h),
     "yummly.com": (h) => new Yummly(h),
-    "zeit.de": (h) => new ZeitWochenmarkt(h)
+    "zeit.de": (h) => new ZeitWochenmarkt(h),
 };
 
 export default function replace(window: Window, orig: RecipeSchema) {

@@ -1,8 +1,5 @@
-import {
-    normalizeNodeList,
-    normalizeString,
-    ReplacementParser
-} from "../ReplacementParser.js";
+import { ReplacementParser } from "../ReplacementParser.js";
+import { normalizeNodeList, normalizeString } from "../utils.js";
 
 export class MotherThyme extends ReplacementParser {
     ingredients() {

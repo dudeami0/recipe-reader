@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.seriouseats.com/harissa-armenian-wheat-and-chicken-porridge-recipe-5224855"
-    );
-});
-
 describe("SeriousEats", function () {
     describe("https://www.seriouseats.com/harissa-armenian-wheat-and-chicken-porridge-recipe-5224855", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.seriouseats.com/harissa-armenian-wheat-and-chicken-porridge-recipe-5224855"
+            );
+        });
+
         it(`should be authored by "Andrew Janjigian"`, function () {
             assert.equal(recipe.author, "Andrew Janjigian");
         });
@@ -34,7 +34,7 @@ describe("SeriousEats", function () {
                 "6 tablespoons (85g) butter",
                 "4 tablespoons (60g) olive oil",
                 "2 tablespoons (16g) Aleppo pepper (see notes)",
-                "lavash, for serving (optional)"
+                "lavash, for serving (optional)",
             ]);
         });
     });

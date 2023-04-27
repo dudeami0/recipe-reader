@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "http://www.afghankitchenrecipes.com/recipe/norinj-palau-rice-with-orange/"
-    );
-});
-
 describe("AfghanKitchenRecipes", function () {
     describe("http://www.afghankitchenrecipes.com/recipe/norinj-palau-rice-with-orange/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "http://www.afghankitchenrecipes.com/recipe/norinj-palau-rice-with-orange/"
+            );
+        });
+
         it(`should be authored by "nash"`, function () {
             assert.equal(recipe.author, "nash");
         });
@@ -32,7 +32,7 @@ describe("AfghanKitchenRecipes", function () {
                 "½ tsp saffron or egg yellow food colour  (optional)",
                 "25 ml rosewater (optional)",
                 "1 tsp ground green or white cardamom seeds  (optional)",
-                "salt and pepper"
+                "salt and pepper",
             ]);
         });
     });

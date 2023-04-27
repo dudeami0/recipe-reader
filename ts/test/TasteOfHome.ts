@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.tasteofhome.com/recipes/quick-tater-tots-bake/"
-    );
-});
-
 describe("TasteOfHome", function () {
     describe("https://www.tasteofhome.com/recipes/quick-tater-tots-bake/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.tasteofhome.com/recipes/quick-tater-tots-bake/"
+            );
+        });
+
         it(`should be authored by "Taste of Home"`, function () {
             assert.equal(recipe.author, "Taste of Home");
         });
@@ -30,7 +30,7 @@ describe("TasteOfHome", function () {
                 "1 package (16 ounces) frozen Tater Tots",
                 "1 can (10-3/4 ounces) condensed cream of mushroom soup, undiluted",
                 "2/3 cup 2% milk or water",
-                "1 cup shredded cheddar cheese"
+                "1 cup shredded cheddar cheese",
             ]);
         });
     });

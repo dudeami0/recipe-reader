@@ -3,19 +3,19 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.forksoverknives.com/recipes/amazing-grains/oil-free-farro-fried-rice/"
-    );
-});
-
 describe("ForksOverKnives", function () {
     describe("https://www.forksoverknives.com/recipes/amazing-grains/oil-free-farro-fried-rice/", function () {
-        it(`should be authored by "Nancy Macklin"`, function () {
-            assert.equal(recipe.author, "Nancy Macklin");
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.forksoverknives.com/recipes/amazing-grains/oil-free-farro-fried-rice/"
+            );
+        });
+
+        it(`should be authored by "Nancy Macklin, RDN"`, function () {
+            assert.equal(recipe.author, "Nancy Macklin, RDN");
         });
 
         it(`should be titled "Oil-Free Farro Fried Rice"`, function () {
@@ -35,7 +35,7 @@ describe("ForksOverKnives", function () {
                 "4 cups cooked farro",
                 "3 cups thinly sliced kale, stems removed",
                 "¼ cup sliced scallions",
-                "2 tablespoons sesame seeds, toasted"
+                "2 tablespoons sesame seeds, toasted",
             ]);
         });
     });

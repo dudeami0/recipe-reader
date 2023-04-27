@@ -6,27 +6,10 @@ import { SchemaOrgJsonLdParser } from "../parsers/SchemaOrgJsonLdParser.js";
 
 const { JSDOM } = jsdom;
 
-function runTest(window: Window) {
-    const parser = new SchemaOrgJsonLdParser(window, "example.com");
-    const results = parser.parse();
-
-    describe("SchemaOrgJsonLdParser", function () {
-        describe("#parse()", function () {
-            it("should return an instance of Array", function () {
-                assert.equal(results instanceof Array, true);
-            });
-            it("should return an Array of 3 elements from test data", function () {
-                assert.equal(results.length, 3);
-            });
-            it("should contain only RecipeSchema", function () {
-                assert.equal(results.filter(isRecipeSchema).length, 3);
-            });
-        });
-    });
-}
-
-runTest(
-    <Window>(<unknown>new JSDOM(`
+describe("SchemaOrgJsonLdParser", function () {
+    let results: any;
+    before(() => {
+        const window = <Window>(<unknown>new JSDOM(`
 <html>
     <head>
         <title>JSON-LD Example</title>
@@ -86,5 +69,20 @@ runTest(
     </script>
     </body>
 </html>
-`).window)
-);
+`).window);
+
+        const parser = new SchemaOrgJsonLdParser(window, "example.com");
+        results = parser.parse();
+    });
+    describe("#parse()", function () {
+        it("should return an instance of Array", function () {
+            assert.equal(results instanceof Array, true);
+        });
+        it("should return an Array of 3 elements from test data", function () {
+            assert.equal(results.length, 3);
+        });
+        it("should contain only RecipeSchema", function () {
+            assert.equal(results.filter(isRecipeSchema).length, 3);
+        });
+    });
+});

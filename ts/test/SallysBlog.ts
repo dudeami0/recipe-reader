@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://sallys-blog.de/blog/detail/sCategory/248/blogArticle/1867"
-    );
-});
-
 describe("SallysBlog", function () {
     describe("https://sallys-blog.de/blog/detail/sCategory/248/blogArticle/1867", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://sallys-blog.de/blog/detail/sCategory/248/blogArticle/1867"
+            );
+        });
+
         it(`should be titled "Capri-Sun Cupcakes"`, function () {
             assert.equal(recipe.title, "Capri-Sun Cupcakes");
         });
@@ -32,18 +32,18 @@ describe("SallysBlog", function () {
                 "0,5 TL Backpulver",
                 "0,25 TL Natron",
                 "50 g Mandeln (gehackt)",
-                "150 g Himbeeren (TK oder frisch)",
-                "50 g Capri-Sun Sirup Kirsche",
+                "150 g Himbeeren (frisch oder TK)",
+                "50 g Capri-Sun Sirup (Kirsche)",
                 "250 g Frischkäse (Doppelrahmstufe)",
-                "100 g Capri-Sun Sirup Multifrucht",
+                "100 g Capri-Sun Sirup (Multifrucht)",
                 "200 g Sahne",
-                "5,5 TL Sanapart",
+                "5,5 TL San-apart",
                 "250 g Frischkäse (Doppelrahmstufe)",
-                "100 g Capri-Sun Sirup Kirsche",
+                "100 g Capri-Sun Sirup (Kirsche)",
                 "200 g Sahne",
-                "5,5 TL Sanapart",
-                "1 Esslöffel Amaranth (gepufft)",
-                "24 Oblaten-Blumen Pastell"
+                "5,5 TL San-apart",
+                "1 EL Amaranth (gepufft)",
+                "24 Pastell Oblatenblumen",
             ]);
         });
     });

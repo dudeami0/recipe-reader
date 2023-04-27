@@ -3,19 +3,19 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.kingarthurbaking.com/recipes/king-arthurs-carrot-cake-recipe"
-    );
-});
-
 describe("KingArthur", function () {
     describe("https://www.kingarthurbaking.com/recipes/king-arthurs-carrot-cake-recipe", function () {
-        it(`should be authored by "King Arthur Flour"`, function () {
-            assert.equal(recipe.author, "King Arthur Flour");
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.kingarthurbaking.com/recipes/king-arthurs-carrot-cake-recipe"
+            );
+        });
+
+        it(`should be authored by "King Arthur Baking"`, function () {
+            assert.equal(recipe.author, "King Arthur Baking");
         });
 
         it(`should be titled "King Arthur's Carrot Cake"`, function () {
@@ -39,9 +39,9 @@ describe("KingArthur", function () {
                 "8 tablespoons (113g) unsalted butter room temperature",
                 "one 8-ounce package (227g) cream cheese room temperature",
                 "1/4 teaspoon salt",
-                "2 teaspoons vanilla extract or 1/2 teaspoon Fiori di Sicilia",
+                "2 teaspoons King Arthur Pure Vanilla Extract or 1/2 teaspoon King Arthur Fiori di Sicilia",
                 "2 1/2 to 3 1/2 cups (283g to 397g) confectioners' sugar",
-                "1 teaspoon milk or heavy cream optional if necessary to thin frosting"
+                "1 teaspoon milk or heavy cream optional if necessary to thin frosting",
             ]);
         });
     });

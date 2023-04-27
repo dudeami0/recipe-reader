@@ -6,30 +6,11 @@ import { SchemaOrgRDFaParser } from "../parsers/SchemaOrgRDFaParser.js";
 
 const { JSDOM } = jsdom;
 
-function runTest(window: Window) {
-    const parser = new SchemaOrgRDFaParser(window, "example.com");
-    const results = parser.parse();
+describe("SchemaOrgMicrodataParser", function () {
+    let results: any;
 
-    describe("SchemaOrgMicrodataParser", function () {
-        describe("#parse()", function () {
-            it("should return an instance of Array", function () {
-                assert.equal(results instanceof Array, true);
-            });
-            it("should return an Array of 1 element from test data", function () {
-                assert.equal(results.length, results.length);
-            });
-            it("should contain only RecipeSchema", function () {
-                assert.equal(
-                    results.filter(isRecipeSchema).length,
-                    results.length
-                );
-            });
-        });
-    });
-}
-
-runTest(
-    <Window>(<unknown>new JSDOM(`<html>
+    before(() => {
+        const window = <Window>(<unknown>new JSDOM(`<html>
     <head>
         <title>RDFa Example</title>
     </head>
@@ -95,5 +76,21 @@ runTest(
             From Janel, May 5 -- thank you, great recipe! ...
         </div>
     </body>
-</html>`).window)
-);
+</html>`).window);
+
+        const parser = new SchemaOrgRDFaParser(window, "example.com");
+        results = parser.parse();
+    });
+
+    describe("#parse()", function () {
+        it("should return an instance of Array", function () {
+            assert.equal(results instanceof Array, true);
+        });
+        it("should return an Array of 1 element from test data", function () {
+            assert.equal(results.length, results.length);
+        });
+        it("should contain only RecipeSchema", function () {
+            assert.equal(results.filter(isRecipeSchema).length, results.length);
+        });
+    });
+});

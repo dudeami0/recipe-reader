@@ -1,36 +1,42 @@
-import {
-    normalizeElement,
-    normalizeNodeList,
-    ReplacementParser
-} from "../ReplacementParser.js";
+import { ReplacementParser } from "../ReplacementParser.js";
+import { normalizeElement, normalizeNodeList } from "../utils.js";
 
 export class SallysBlog extends ReplacementParser {
     title() {
-        const ele = this.querySelector("h1.blog--detail-headline");
+        const ele = this.querySelector("h1");
         return normalizeElement(ele);
     }
 
-    total_time() {
-        const ele = this.querySelector("span#zubereitungszeit");
+    prep_time() {
+        const ele = this.querySelectorAll("h6")[0];
+        return normalizeElement(ele);
+    }
+
+    cook_time(): string {
+        const ele = this.querySelectorAll("h6")[1];
         return normalizeElement(ele);
     }
 
     yields() {
-        const ele = this.querySelector("input.float-left");
-        const ele2 = this.querySelector("span#is_singular");
-        return normalizeElement(ele, "value") + " " + normalizeElement(ele2);
+        const ele = this.querySelector("input[type=number]");
+        const ele2 =
+            this.querySelector(
+                ".order-1 h4"
+            )?.nextElementSibling?.querySelector(".text-lg");
+        return (
+            normalizeElement(ele, "value") +
+            " " +
+            (ele2 ? normalizeElement(ele2) : "servings")
+        );
     }
 
     ingredients() {
-        const eles = this.querySelectorAll("li.quantity");
+        const eles = this.querySelectorAll(".filter-box>.items-start");
         return normalizeNodeList(eles);
     }
 
     instructions() {
-        const eles = this.querySelectorAll(
-            "div.blog--detail-description.block " +
-                "div.content_type_2.content_type_3.content_type_4"
-        );
+        const eles = this.querySelectorAll(".recipe-description .prose");
         return normalizeNodeList(eles);
     }
 }

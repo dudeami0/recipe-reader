@@ -1,8 +1,5 @@
-import {
-    normalizeElement,
-    normalizeNodeList,
-    ReplacementParser
-} from "../ReplacementParser.js";
+import { ReplacementParser } from "../ReplacementParser.js";
+import { normalizeElement, normalizeNodeList } from "../utils.js";
 
 // Could not find a link to a recipe, all search results turned up 404s
 

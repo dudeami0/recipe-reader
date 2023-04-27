@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://streetkitchen.hu/fantasztikus-desszertek/husveti-citromos-keksz/"
-    );
-});
-
 describe("StreetKitchen", function () {
     describe("https://streetkitchen.hu/fantasztikus-desszertek/husveti-citromos-keksz/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://streetkitchen.hu/fantasztikus-desszertek/husveti-citromos-keksz/"
+            );
+        });
+
         it(`should be authored by "Szilágyi Nóri"`, function () {
             assert.equal(recipe.author, "Szilágyi Nóri");
         });
@@ -55,7 +55,7 @@ describe("StreetKitchen", function () {
                 "80 ml citromlé",
                 "1 csipet só",
                 "100 g vaj",
-                "porcukor"
+                "porcukor",
             ]);
         });
     });

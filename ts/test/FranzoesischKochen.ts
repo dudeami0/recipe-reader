@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.franzoesischkochen.de/osterei-kuchen-mit-ueberraschung/"
-    );
-});
-
 describe("FranzoesischKochen", function () {
     describe("https://www.franzoesischkochen.de/osterei-kuchen-mit-ueberraschung/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.franzoesischkochen.de/osterei-kuchen-mit-ueberraschung/"
+            );
+        });
+
         it(`should be authored by "Aurélie Bastian"`, function () {
             assert.equal(recipe.author, "Aurélie Bastian");
         });
@@ -31,7 +31,7 @@ describe("FranzoesischKochen", function () {
                 "80 g gemahlene Mandeln",
                 "30g geschmolzene Butter",
                 "1/2 TL Vanilleextrakt",
-                "30-40 ml Milch. (Butter und Mehl für die Tassen)"
+                "30-40 ml Milch. (Butter und Mehl für die Tassen)",
             ]);
         });
     });

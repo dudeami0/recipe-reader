@@ -3,15 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get("https://copykat.com/starbucks-salted-caramel-latte/");
-});
-
 describe("CopyKat", function () {
     describe("https://copykat.com/starbucks-salted-caramel-latte/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://copykat.com/starbucks-salted-caramel-latte/"
+            );
+        });
+
         it(`should be authored by "Stephanie Manley"`, function () {
             assert.equal(recipe.author, "Stephanie Manley");
         });
@@ -27,7 +29,7 @@ describe("CopyKat", function () {
                 "4 ounces espresso or strong brewed coffee",
                 "2½ tablespoons caramel syrup divided use",
                 "4 ounces milk warmed and frothed",
-                "2 tablespoons whipped cream"
+                "2 tablespoons whipped cream",
             ]);
         });
     });

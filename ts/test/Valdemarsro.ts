@@ -3,15 +3,15 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get("https://www.valdemarsro.dk/kebabsalat/");
-});
-
 describe("Valdemarsro", function () {
     describe("https://www.valdemarsro.dk/kebabsalat/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get("https://www.valdemarsro.dk/kebabsalat/");
+        });
+
         it(`should be authored by "Ann-Christine Hellerup Brandt"`, function () {
             assert.equal(recipe.author, "Ann-Christine Hellerup Brandt");
         });
@@ -49,7 +49,7 @@ describe("Valdemarsro", function () {
                 "1 agurk, halveret og skåret i skiver",
                 "1 rødløg, skåret i tynde både",
                 "100 g cherrytomater, skåret i kvarte",
-                "1 håndfuld bredbladet persille"
+                "1 håndfuld bredbladet persille",
             ]);
         });
     });

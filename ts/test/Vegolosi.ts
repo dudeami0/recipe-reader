@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.vegolosi.it/ricette-vegane-semplici-veloci/tagliolini-radicchio-e-seitan-aceto-balsamico/"
-    );
-});
-
 describe("Vegolosi", function () {
     describe("https://www.vegolosi.it/ricette-vegane-semplici-veloci/tagliolini-radicchio-e-seitan-aceto-balsamico/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.vegolosi.it/ricette-vegane-semplici-veloci/tagliolini-radicchio-e-seitan-aceto-balsamico/"
+            );
+        });
+
         it(`should be authored by "Cristiano Bonolo"`, function () {
             assert.equal(recipe.author, "Cristiano Bonolo");
         });
@@ -35,7 +35,7 @@ describe("Vegolosi", function () {
                 "1 spicchio d’aglio",
                 "Olio extravergine di oliva",
                 "Sale e pepe q.b.",
-                "Aceto balsamico q.b. per decorare"
+                "Aceto balsamico q.b. per decorare",
             ]);
         });
     });

@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://inspiralized.com/air-fryer-salmon-in-green-curry-cauliflower-sauce/"
-    );
-});
-
 describe("Inspiralized", function () {
     describe("https://inspiralized.com/air-fryer-salmon-in-green-curry-cauliflower-sauce/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://inspiralized.com/air-fryer-salmon-in-green-curry-cauliflower-sauce/"
+            );
+        });
+
         it(`should be authored by "Ali Maffucci"`, function () {
             assert.equal(recipe.author, "Ali Maffucci");
         });
@@ -43,7 +43,7 @@ describe("Inspiralized", function () {
                 "¼ cup fresh mint leaves",
                 "¼ cup fresh Thai basil leaves",
                 "2 cups steamed jasmine rice",
-                "1 lime cut into wedges, for serving"
+                "1 lime cut into wedges, for serving",
             ]);
         });
     });

@@ -1,6 +1,6 @@
 import { Parser } from "./Parser.js";
 import { RecipeSchema } from "./RecipeSchema.js";
-import { normalizeString } from "./ReplacementParser.js";
+import { normalizeString } from "./utils.js";
 
 /**
  * Searches the given HTML data for a schema.org Recipe definition, and returns
@@ -45,7 +45,7 @@ export abstract class SchemaOrgParser extends Parser {
         instructions: "instructions",
         ratingvalue: "ratingValue",
         "@type": "@type",
-        text: "text"
+        text: "text",
     };
 
     private normalizeKeyNames(root: { [key: string]: any }) {
@@ -86,15 +86,15 @@ export abstract class SchemaOrgParser extends Parser {
                 ...this.normalizeArray(data.recipeIngredient),
                 ...this.normalizeArray(data.recipeIngredients),
                 ...this.normalizeArray(data.ingredients),
-                ...this.normalizeArray(data.ingredient)
+                ...this.normalizeArray(data.ingredient),
             ]).map(this.normalizeString.bind(this)),
             instructions: [
                 ...this.normalizeArray(data.recipeInstructions),
                 ...this.normalizeArray(data.recipeInstruction),
                 ...this.normalizeArray(data.instructions),
-                ...this.normalizeArray(data.instruction)
+                ...this.normalizeArray(data.instruction),
             ].map(this.normalizeString.bind(this)),
-            rating: this.normalizeString(data.ratingValue)
+            rating: this.normalizeString(data.ratingValue),
         });
     }
 

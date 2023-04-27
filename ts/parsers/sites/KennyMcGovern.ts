@@ -1,4 +1,4 @@
-import { normalizeElement } from "../ReplacementParser.js";
+import { normalizeElement } from "../utils.js";
 import { WordpressRecipe } from "./WordpressRecipe.js";
 
 export class KennyMcGovern extends WordpressRecipe {

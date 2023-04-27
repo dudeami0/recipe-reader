@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://thehappyfoodie.co.uk/recipes/garlic-mushroom-tagliatelle/"
-    );
-});
-
 describe("TheHappyFoodie", function () {
     describe("https://thehappyfoodie.co.uk/recipes/garlic-mushroom-tagliatelle/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://thehappyfoodie.co.uk/recipes/garlic-mushroom-tagliatelle/"
+            );
+        });
+
         it(`should be authored by "Chris Baber"`, function () {
             assert.equal(recipe.author, "Chris Baber");
         });
@@ -37,7 +37,7 @@ describe("TheHappyFoodie", function () {
                 "600g fresh tagliatelle",
                 "6 tbsp crème fraîche",
                 "75g Parmesan cheese, grated",
-                "Salt and pepper"
+                "Salt and pepper",
             ]);
         });
     });

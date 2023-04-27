@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.homechef.com/meals/brussels-brown-butter-risotto"
-    );
-});
-
 describe("HomeChef", function () {
     describe("https://www.homechef.com/meals/brussels-brown-butter-risotto", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.homechef.com/meals/brussels-brown-butter-risotto"
+            );
+        });
+
         it(`should be authored by "Chef Scott Gorsky"`, function () {
             assert.equal(recipe.author, "Chef Scott Gorsky");
         });
@@ -36,7 +36,7 @@ describe("HomeChef", function () {
                 "Info 1 oz. Goat Cheese",
                 "Info ½ oz. Roasted Pecans",
                 "2 tsp. Mirepoix Broth Concentrate",
-                "¼ oz. Parsley"
+                "¼ oz. Parsley",
             ]);
         });
     });

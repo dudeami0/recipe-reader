@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.simplyquinoa.com/vegan-rice-paper-dumplings/"
-    );
-});
-
 describe("SimplyQuinoa", function () {
     describe("https://www.simplyquinoa.com/vegan-rice-paper-dumplings/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.simplyquinoa.com/vegan-rice-paper-dumplings/"
+            );
+        });
+
         it(`should be authored by "Alyssa"`, function () {
             assert.equal(recipe.author, "Alyssa");
         });
@@ -37,7 +37,7 @@ describe("SimplyQuinoa", function () {
                 "for the dumplings:",
                 "8 rice paper rounds",
                 "Filling",
-                "3 tablespoons olive or avocado oil"
+                "3 tablespoons olive or avocado oil",
             ]);
         });
     });

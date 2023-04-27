@@ -1,42 +1,39 @@
-import {
-    normalizeElement,
-    normalizeNodeList,
-    ReplacementParser
-} from "../ReplacementParser.js";
+import { ReplacementParser } from "../ReplacementParser.js";
+import { normalizeElement, normalizeNodeList } from "../utils.js";
 
 export class FitMenCook extends ReplacementParser {
+    author() {
+        const ele = this.querySelector(".fmc_autor_top_name p");
+        return normalizeElement(ele);
+    }
+
     title() {
-        const ele = this.querySelector("h2.gap-none");
+        const ele = this.querySelector("h1");
+        return normalizeElement(ele);
+    }
+
+    prep_time() {
+        const ele = this.querySelector(".fmc_prep .fmc_prep");
+        return normalizeElement(ele);
+    }
+
+    cook_time() {
+        const ele = this.querySelector(".fmc_prep .fmc_cook");
         return normalizeElement(ele);
     }
 
     total_time() {
-        const ele = this.querySelector("span.total-time");
+        const ele = this.querySelector(".fmc_prep .fmc_total");
         return normalizeElement(ele);
     }
 
-    yields() {
-        const ele = this.querySelector("h4 strong");
-        const childNodes: ChildNode[] = ele ? Array.from(ele.childNodes) : [];
-        for (const child of childNodes) {
-            if (child.nodeType === 3) {
-                const text = child.textContent || "";
-                return (
-                    text.split(" ").filter((a) => parseInt(a) > 0)[0] +
-                    "servings"
-                );
-            }
-        }
-        return super.yields();
-    }
-
     ingredients() {
-        const eles = this.querySelectorAll("div.recipe-ingredients li");
+        const eles = this.querySelectorAll(".fmc_ingredients li");
         return normalizeNodeList(eles);
     }
 
     instructions() {
-        const eles = this.querySelectorAll("div.recipes-steps li");
+        const eles = this.querySelectorAll(".fmc_steps .fmc_step_content");
         return normalizeNodeList(eles);
     }
 }

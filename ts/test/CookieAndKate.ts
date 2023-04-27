@@ -3,15 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get("https://cookieandkate.com/turmeric-tea-recipe/");
-});
-
 describe("CookieAndKate", function () {
     describe("https://cookieandkate.com/turmeric-tea-recipe/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://cookieandkate.com/turmeric-tea-recipe/"
+            );
+        });
+
         it(`should be titled "Fresh Turmeric Tea"`, function () {
             assert.equal(recipe.title, "Fresh Turmeric Tea");
         });
@@ -20,7 +22,7 @@ describe("CookieAndKate", function () {
             assert.deepEqual(recipe.ingredients, [
                 "One 2-inch nub of fresh turmeric (no need to peel)",
                 "1 cup water",
-                "Optional: Lemon or orange round, honey or maple syrup"
+                "Optional: Lemon or orange round, honey or maple syrup",
             ]);
         });
     });

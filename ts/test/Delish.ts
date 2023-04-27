@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.delish.com/cooking/recipe-ideas/a39211247/crunch-salad-recipe/"
-    );
-});
-
 describe("Delish", function () {
     describe("https://www.delish.com/cooking/recipe-ideas/a39211247/crunch-salad-recipe/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.delish.com/cooking/recipe-ideas/a39211247/crunch-salad-recipe/"
+            );
+        });
+
         it(`should be authored by "Justin Sullivan"`, function () {
             assert.equal(recipe.author, "Justin Sullivan");
         });
@@ -41,7 +41,7 @@ describe("Delish", function () {
                 "1/3 c. cup roasted and unsalted peanuts, roughly chopped",
                 "1/3 c. cup roasted and unsalted seeds (such as sunflower or pumpkin)",
                 "3 oz. feta cheese, crumbled",
-                "Kosher Salt"
+                "Kosher Salt",
             ]);
         });
     });

@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.przepisy.pl/przepis/ciasto-mleczna-kanapka-milky-way"
-    );
-});
-
 describe("Przepisy", function () {
     describe("https://www.przepisy.pl/przepis/ciasto-mleczna-kanapka-milky-way", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.przepisy.pl/przepis/ciasto-mleczna-kanapka-milky-way"
+            );
+        });
+
         it(`should be authored by "przepisy.pl"`, function () {
             assert.equal(recipe.author, "przepisy.pl");
         });
@@ -43,7 +43,7 @@ describe("Przepisy", function () {
                 "mąka pszenna",
                 "40 gramów",
                 "mąka migdałowa",
-                "30 gramów"
+                "30 gramów",
             ]);
         });
     });

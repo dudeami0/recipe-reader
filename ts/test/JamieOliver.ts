@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.jamieoliver.com/recipes/chocolate-recipes/chocolate-hot-cross-buns/"
-    );
-});
-
 describe("JamieOliver", function () {
     describe("https://www.jamieoliver.com/recipes/chocolate-recipes/chocolate-hot-cross-buns/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.jamieoliver.com/recipes/chocolate-recipes/chocolate-hot-cross-buns/"
+            );
+        });
+
         it(`should be authored by "Jamie Oliver"`, function () {
             assert.equal(recipe.author, "Jamie Oliver");
         });
@@ -35,7 +35,7 @@ describe("JamieOliver", function () {
                 "1 x 7 g sachet of dried yeast",
                 "150 g quality dark chocolate , (70%)",
                 "100 g raisins , or mixed dried fruit",
-                "3 tablespoons runny honey"
+                "3 tablespoons runny honey",
             ]);
         });
     });

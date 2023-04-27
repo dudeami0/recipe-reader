@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.matprat.no/oppskrifter/gjester/pulled-lamb-med-tilbehor/"
-    );
-});
-
 describe("Matprat", function () {
     describe("https://www.matprat.no/oppskrifter/gjester/pulled-lamb-med-tilbehor/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.matprat.no/oppskrifter/gjester/pulled-lamb-med-tilbehor/"
+            );
+        });
+
         it(`should be authored by "MatPrat"`, function () {
             assert.equal(recipe.author, "MatPrat");
         });
@@ -53,7 +53,7 @@ describe("Matprat", function () {
                 "1 pk bladpersille",
                 "2 ss olivenolje",
                 "1 stk. granateple",
-                "skall av 0,5 stk. sitron"
+                "skall av 0,5 stk. sitron",
             ]);
         });
     });

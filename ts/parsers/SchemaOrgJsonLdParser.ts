@@ -5,47 +5,71 @@ export class SchemaOrgJsonLdParser extends SchemaOrgParser {
         super(window, host);
     }
 
-    extract() {
-        const scripts = Array.from(
+    getLDJSON(): any[] {
+        return Array.from(
             this.getWindow().document.querySelectorAll(
                 `script[type="application/ld+json"]`
             )
-        );
-        return scripts
-            .map((script) => {
+        ).map((ele) => ele.innerHTML);
+    }
+
+    extract() {
+        const schemas = this.getLDJSON()
+            .flatMap((text) => {
                 try {
                     let schemas;
                     try {
-                        schemas = JSON.parse(script.innerHTML);
+                        schemas = JSON.parse(text);
                     } catch (e) {}
                     if (!schemas) {
-                        schemas = JSON.parse(this.fixJson(script.innerHTML));
+                        schemas = JSON.parse(this.fixJson(text));
                     }
                     if (!(schemas instanceof Array)) {
                         schemas = [schemas];
                     }
-                    schemas = schemas.filter(
-                        (schema: any) =>
-                            schema["@context"].indexOf("//schema.org") !== -1
-                    );
-                    let flattened = [];
-                    for (const schema of schemas) {
-                        if (schema["@graph"] instanceof Array) {
-                            schema["@graph"].forEach((o) => flattened.push(o));
-                        } else {
-                            flattened.push(schema);
-                        }
-                    }
-                    return flattened.filter(
-                        (schema: any) => schema["@type"] === "Recipe"
-                    );
+                    return schemas;
                 } catch (e) {
                     // Malformed JSON
                     return false;
                 }
             })
-            .filter((r) => Boolean(r))
-            .flat(1);
+            .filter((str) => Boolean(str))
+            .filter(
+                (schema: any) =>
+                    schema["@context"].indexOf("//schema.org") !== -1
+            )
+            .flatMap((schema) => {
+                if (schema["@graph"] instanceof Array) {
+                    return schema["@graph"];
+                } else {
+                    return [schema];
+                }
+            })
+            .filter((r) => Boolean(r));
+
+        const recipes = schemas.filter((schema) =>
+            schema["@type"] instanceof Array
+                ? schema["@type"].indexOf("Recipe") !== -1
+                : schema["@type"] === "Recipe"
+        );
+
+        const ids: { [name: string]: any } = {};
+        schemas.forEach((schema) => {
+            if (schema["@id"]) {
+                ids[schema["@id"]] = schema;
+            }
+        });
+
+        const results = recipes
+            .filter((recipe) => Boolean(recipe))
+            .map((recipe) => {
+                const id = recipe && recipe.author && ids[recipe.author["@id"]];
+                if (id) {
+                    recipe.author = id.name;
+                }
+                return recipe;
+            });
+        return results;
     }
 
     /**

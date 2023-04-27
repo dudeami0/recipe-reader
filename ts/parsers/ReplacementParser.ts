@@ -1,36 +1,9 @@
-import { decode } from "html-entities";
-import striptags from "striptags";
 import { RecipeSchema } from "./RecipeSchema.js";
 
-export function normalizeNodeList(list: Element[]) {
-    return list.map((ele) => normalizeElement(ele));
-}
-
-export function normalizeElement(
-    ele: Element | null,
-    attr: string | false = false
-) {
-    if (ele) {
-        if (attr) {
-            return normalizeString(ele.getAttribute(attr));
-        }
-        return normalizeString(ele.textContent);
-    }
-    return "";
-}
-
-export function normalizeString(str: any) {
-    return decode(
-        striptags(
-            (String(str) || "").trim().replace(new RegExp("\\s+", "ig"), " ")
-        )
-    );
-}
-
 export class ReplacementParser {
-    private data: any;
+    protected data: any;
     private window?: Window;
-    private host: string;
+    protected host: string;
 
     constructor(host: string) {
         this.host = host.toLowerCase();
@@ -61,7 +34,7 @@ export class ReplacementParser {
             instructions: this.instructions(),
             ratings: this.ratings(),
             cuisine: this.cuisine(),
-            description: this.description()
+            description: this.description(),
         };
     }
 

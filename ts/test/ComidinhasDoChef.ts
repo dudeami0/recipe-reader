@@ -3,15 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get("https://comidinhasdochef.com/bolo-de-mandioca-assado/");
-});
-
 describe("ComidinhasDoChef", function () {
     describe("https://comidinhasdochef.com/bolo-de-mandioca-assado/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://comidinhasdochef.com/bolo-de-mandioca-assado/"
+            );
+        });
+
         it(`should be authored by "Pedro Cavalcanti"`, function () {
             assert.equal(recipe.author, "Pedro Cavalcanti");
         });
@@ -30,7 +32,7 @@ describe("ComidinhasDoChef", function () {
                 "3 colheres (sopa) de manteiga",
                 "1 xícara (chá) de leite",
                 "1 pitada de sal",
-                "1 colher (sopa) de fermento químico em pó para bolos"
+                "1 colher (sopa) de fermento químico em pó para bolos",
             ]);
         });
     });

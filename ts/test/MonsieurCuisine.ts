@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.monsieur-cuisine.com/de/rezepte/detail/kraeutersalz-1/"
-    );
-});
-
 describe("MonsieurCuisine", function () {
     describe("https://www.monsieur-cuisine.com/de/rezepte/detail/kraeutersalz-1/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.monsieur-cuisine.com/de/rezepte/detail/kraeutersalz-1/"
+            );
+        });
+
         it(`should be authored by "Rezept von: Anonym"`, function () {
             assert.equal(recipe.author, "Rezept von: Anonym");
         });
@@ -33,7 +33,7 @@ describe("MonsieurCuisine", function () {
                 "2 EL Rosmarin",
                 "1 EL Oregano",
                 "1 EL Majoran",
-                "ev. 1 EL italienische Kräuter"
+                "ev. 1 EL italienische Kräuter",
             ]);
         });
     });

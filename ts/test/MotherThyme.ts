@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.motherthyme.com/2022/03/5-ingredient-cake-mix-carrot-cake-cookies.html"
-    );
-});
-
 describe("MotherThyme", function () {
     describe("https://www.motherthyme.com/2022/03/5-ingredient-cake-mix-carrot-cake-cookies.html", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.motherthyme.com/2022/03/5-ingredient-cake-mix-carrot-cake-cookies.html"
+            );
+        });
+
         it(`should be authored by "Jenn (Mother Thyme)"`, function () {
             assert.equal(recipe.author, "Jenn (Mother Thyme)");
         });
@@ -31,7 +31,7 @@ describe("MotherThyme", function () {
                 "1/2 cup vegetable oil",
                 "2 large eggs",
                 "1 container of cream cheese frosting",
-                "1/2 cup chopped walnuts"
+                "1/2 cup chopped walnuts",
             ]);
         });
     });

@@ -1,4 +1,4 @@
-import { normalizeElement, normalizeNodeList } from "../ReplacementParser.js";
+import { normalizeElement, normalizeNodeList } from "../utils.js";
 import { WordpressRecipe } from "./WordpressRecipe.js";
 
 export class HundredAndOneCookbooks extends WordpressRecipe {

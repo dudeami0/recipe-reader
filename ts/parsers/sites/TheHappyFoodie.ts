@@ -1,4 +1,5 @@
-import { normalizeNodeList, ReplacementParser } from "../ReplacementParser.js";
+import { ReplacementParser } from "../ReplacementParser.js";
+import { normalizeNodeList } from "../utils.js";
 
 export class TheHappyFoodie extends ReplacementParser {
     ingredients() {

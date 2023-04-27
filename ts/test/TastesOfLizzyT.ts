@@ -3,15 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get("https://www.tastesoflizzyt.com/almond-joy-layer-cake/");
-});
-
 describe("TastesOfLizzyT", function () {
     describe("https://www.tastesoflizzyt.com/almond-joy-layer-cake/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.tastesoflizzyt.com/almond-joy-layer-cake/"
+            );
+        });
+
         it(`should be authored by "Lizzy T"`, function () {
             assert.equal(recipe.author, "Lizzy T");
         });
@@ -34,7 +36,7 @@ describe("TastesOfLizzyT", function () {
                 "2 cups semi-sweet chocolate chips",
                 "1 cup heavy cream",
                 "1/2 cup sliced almonds",
-                "Almond Joy fun-size candy bar for garnishing"
+                "Almond Joy fun-size candy bar for garnishing",
             ]);
         });
     });

@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://paninihappy.com/turkey-bacon-lattice-and-havarti-panini/"
-    );
-});
-
 describe("PaniniHappy", function () {
     describe("https://paninihappy.com/turkey-bacon-lattice-and-havarti-panini/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://paninihappy.com/turkey-bacon-lattice-and-havarti-panini/"
+            );
+        });
+
         it(`should be authored by "Recipe by Kathy Strahs, PaniniHappy.com"`, function () {
             assert.equal(
                 recipe.author,
@@ -36,7 +36,7 @@ describe("PaniniHappy", function () {
                 "4 tablespoons Green goddess dressing or mayonnaise",
                 "8 ounces turkey breast, sliced",
                 "2 plum tomatoes (such as Roma), thinly sliced and seeded",
-                "4 slices havarti cheese"
+                "4 slices havarti cheese",
             ]);
         });
     });

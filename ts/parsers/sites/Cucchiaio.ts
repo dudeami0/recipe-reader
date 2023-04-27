@@ -1,4 +1,5 @@
-import { normalizeElement, ReplacementParser } from "../ReplacementParser.js";
+import { ReplacementParser } from "../ReplacementParser.js";
+import { normalizeElement } from "../utils.js";
 
 export class Cucchiaio extends ReplacementParser {
     total_time() {

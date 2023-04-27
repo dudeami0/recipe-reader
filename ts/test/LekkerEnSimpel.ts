@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.lekkerensimpel.com/gevulde-avocado-met-eiersalade/"
-    );
-});
-
 describe("LekkerEnSimpel", function () {
     describe("https://www.lekkerensimpel.com/gevulde-avocado-met-eiersalade/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.lekkerensimpel.com/gevulde-avocado-met-eiersalade/"
+            );
+        });
+
         it(`should be titled "Gevulde avocado met eiersalade"`, function () {
             assert.equal(recipe.title, "Gevulde avocado met eiersalade");
         });
@@ -27,7 +27,7 @@ describe("LekkerEnSimpel", function () {
                 "4 plakjes ham",
                 "1 tl bieslook",
                 "0.5 tl knoflookpoeder",
-                "snufje peper en zout"
+                "snufje peper en zout",
             ]);
         });
     });

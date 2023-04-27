@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.thespruceeats.com/baked-halibut-butter-parmesan-topping-3057312"
-    );
-});
-
 describe("TheSpruceEats", function () {
     describe("https://www.thespruceeats.com/baked-halibut-butter-parmesan-topping-3057312", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.thespruceeats.com/baked-halibut-butter-parmesan-topping-3057312"
+            );
+        });
+
         it(`should be authored by "Diana Rattray"`, function () {
             assert.equal(recipe.author, "Diana Rattray");
         });
@@ -36,7 +36,7 @@ describe("TheSpruceEats", function () {
                 "1/4 teaspoon kosher salt",
                 "1 dash ground black pepper",
                 "2 tablespoons unsalted butter",
-                "Lemon wedges"
+                "Lemon wedges",
             ]);
         });
     });

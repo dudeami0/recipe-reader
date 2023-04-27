@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://tastykitchen.com/recipes/main-courses/creamy-garlic-shrimp-with-parmesan/"
-    );
-});
-
 describe("TastyKitchen", function () {
     describe("https://tastykitchen.com/recipes/main-courses/creamy-garlic-shrimp-with-parmesan/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://tastykitchen.com/recipes/main-courses/creamy-garlic-shrimp-with-parmesan/"
+            );
+        });
+
         it(`should be authored by "Blondelish.com"`, function () {
             assert.equal(recipe.author, "Blondelish.com");
         });
@@ -36,7 +36,7 @@ describe("TastyKitchen", function () {
                 "1 cup Fresh Grated Parmesan",
                 "Ground Black Pepper To Taste",
                 "Sea Salt, to taste",
-                "1 cup Packed Fresh Basil Leaves, Plus More For Garnish"
+                "1 cup Packed Fresh Basil Leaves, Plus More For Garnish",
             ]);
         });
     });

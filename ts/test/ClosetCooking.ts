@@ -3,15 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get("https://www.closetcooking.com/lemon-butter-tarts/");
-});
-
 describe("ClosetCooking", function () {
     describe("https://www.closetcooking.com/lemon-butter-tarts/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.closetcooking.com/lemon-butter-tarts/"
+            );
+        });
+
         it(`should be titled "Lemon Butter Tarts"`, function () {
             assert.equal(recipe.title, "Lemon Butter Tarts");
         });
@@ -25,7 +27,7 @@ describe("ClosetCooking", function () {
                 "1 large egg",
                 "1 large egg yolk",
                 "1/4 cup unsalted butter, melted and cooled",
-                "pinch of salt"
+                "pinch of salt",
             ]);
         });
     });

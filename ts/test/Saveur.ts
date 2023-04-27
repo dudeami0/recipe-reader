@@ -3,17 +3,17 @@ import { describe, it } from "mocha";
 import { RecipeSchema } from "../parsers/RecipeSchema.js";
 import { get } from "./utils.js";
 
-let recipe: RecipeSchema;
-
-before(async function () {
-    this.timeout(10000);
-    recipe = await get(
-        "https://www.saveur.com/recipes/veal-with-cabrales-sauces/"
-    );
-});
-
 describe("Saveur", function () {
     describe("https://www.saveur.com/recipes/veal-with-cabrales-sauces/", function () {
+        let recipe: RecipeSchema;
+
+        before(async function () {
+            this.timeout(10000);
+            recipe = await get(
+                "https://www.saveur.com/recipes/veal-with-cabrales-sauces/"
+            );
+        });
+
         it(`should be authored by "Consejo Regulador de Queso Cabrales"`, function () {
             assert.equal(recipe.author, "Consejo Regulador de Queso Cabrales");
         });
@@ -40,7 +40,7 @@ describe("Saveur", function () {
                 "2 medium golden delicious apples, cored and coarsely chopped",
                 "1 cup (5 oz.) mixed dried fruit (such as apricots and raisins) coarsely chopped",
                 "1 cup (7 oz.) cooked, peeled, small chestnuts",
-                "Coarsely chopped parsley, for garnish"
+                "Coarsely chopped parsley, for garnish",
             ]);
         });
     });
